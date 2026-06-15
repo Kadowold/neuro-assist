@@ -6,6 +6,7 @@ from datetime import date
 from styles import aplicar_estilos
 from database import generar_pdf
 from calculadoras import escala_glasgow, escala_nihss, escala_mini_mental, escala_rankin
+from pediatria import calculadora_dosis, curvas_crecimiento, desarrollo_infantil, triaje_pediatrico
 import firebase_admin
 from firebase_admin import credentials, firestore
 
@@ -34,7 +35,8 @@ st.divider()
 menu = st.sidebar.selectbox("Navegacion", [
     "Registrar sintoma",
     "Ver historial",
-    "Calculadoras clinicas"
+    "Calculadoras clinicas",
+    "Herramientas pediatricas"
 ])
 
 if menu == "Registrar sintoma":
@@ -180,4 +182,20 @@ elif menu == "Calculadoras clinicas":
         escala_mini_mental()
     elif calculadora == "Rankin Modificada":
         escala_rankin()
-        
+elif menu == "Herramientas pediatricas":
+    st.sidebar.divider()
+    herramienta = st.sidebar.selectbox("Selecciona la herramienta", [
+        "Calculadora de dosis",
+        "Curvas de crecimiento",
+        "Desarrollo infantil",
+        "Triaje pediatrico"
+    ])
+
+    if herramienta == "Calculadora de dosis":
+        calculadora_dosis(db)
+    elif herramienta == "Curvas de crecimiento":
+        curvas_crecimiento(db)
+    elif herramienta == "Desarrollo infantil":
+        desarrollo_infantil(db)
+    elif herramienta == "Triaje pediatrico":
+        triaje_pediatrico(db)
