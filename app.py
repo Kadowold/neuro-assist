@@ -7,6 +7,7 @@ from styles import aplicar_estilos
 from database import generar_pdf
 from calculadoras import escala_glasgow, escala_nihss, escala_mini_mental, escala_rankin
 from pediatria import calculadora_dosis, curvas_crecimiento, desarrollo_infantil, triaje_pediatrico
+from login import mostrar_login, mostrar_logout
 import firebase_admin
 from firebase_admin import credentials, firestore
 
@@ -22,7 +23,26 @@ if not firebase_admin._apps:
 db = firestore.client()
 
 st.set_page_config(page_title="NeuroApp", page_icon="🧠", layout="centered")
+# Control de sesion
+if "autenticado" not in st.session_state:
+    st.session_state.autenticado = False
+
+if not st.session_state.autenticado:
+    mostrar_login()
+    st.stop()
+
+mostrar_logout()
 st.markdown(aplicar_estilos(), unsafe_allow_html=True)
+# Boton modo oscuro/claro
+if "tema" not in st.session_state:
+    st.session_state.tema = "oscuro"
+
+col_tema = st.columns([8, 1])[1]
+with col_tema:
+    icono = "🌙" if st.session_state.tema == "claro" else "☀️"
+    if st.button(icono):
+        st.session_state.tema = "claro" if st.session_state.tema == "oscuro" else "oscuro"
+        st.rerun()
 
 col1, col2 = st.columns([1, 4])
 with col1:
