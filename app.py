@@ -5,7 +5,7 @@ import datetime
 from datetime import date
 from styles import aplicar_estilos
 from database import generar_pdf
-
+from calculadoras import escala_glasgow, escala_nihss, escala_mini_mental, escala_rankin
 import firebase_admin
 from firebase_admin import credentials, firestore
 
@@ -31,7 +31,11 @@ with col2:
     st.markdown("*Sistema de seguimiento de sintomas neurologicos*")
 st.divider()
 
-menu = st.sidebar.selectbox("Navegacion", ["Registrar sintoma", "Ver historial"])
+menu = st.sidebar.selectbox("Navegacion", [
+    "Registrar sintoma",
+    "Ver historial",
+    "Calculadoras clinicas"
+])
 
 if menu == "Registrar sintoma":
     st.header("Registrar nuevo sintoma")
@@ -88,7 +92,7 @@ elif menu == "Ver historial":
                 if "duración" in datos:
                     datos["duracion"] = datos.pop("duración")
                 lista_registros.append(datos)
-
+          
             df = pd.DataFrame(lista_registros)
 
             if df.empty:
@@ -159,3 +163,21 @@ elif menu == "Ver historial":
             st.error(f"Error al recuperar los datos: {e}")
     else:
         st.info("Escribe el nombre de un paciente para ver su historial.")
+elif menu == "Calculadoras clinicas":
+    st.sidebar.divider()
+    calculadora = st.sidebar.selectbox("Selecciona la escala", [
+        "Glasgow",
+        "NIHSS (ACV)",
+        "Mini-Mental (MMSE)",
+        "Rankin Modificada"
+    ])
+
+    if calculadora == "Glasgow":
+        escala_glasgow()
+    elif calculadora == "NIHSS (ACV)":
+        escala_nihss()
+    elif calculadora == "Mini-Mental (MMSE)":
+        escala_mini_mental()
+    elif calculadora == "Rankin Modificada":
+        escala_rankin()
+        
