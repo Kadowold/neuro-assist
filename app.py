@@ -1,7 +1,6 @@
 import streamlit as st
 import pandas as pd
 import plotly.express as px
-import io
 import datetime
 from datetime import date
 from styles import aplicar_estilos
@@ -71,14 +70,23 @@ elif menu == "Ver historial":
 
     if paciente_buscar:
         try:
-            query = db.collection("sintomas").where("paciente", "==", paciente_buscar).order_by("fecha", direction=firestore.Query.DESCENDING)
+            query = db.collection("sintomas").where(
+                "paciente", "==", paciente_buscar
+            ).order_by("fecha", direction=firestore.Query.DESCENDING)
             docs = query.stream()
 
             lista_registros = []
             for doc in docs:
                 datos = doc.to_dict()
+                # Convertir fecha
                 if "fecha" in datos and datos["fecha"] is not None:
-                    datos["fecha"] = datos["fecha"].date()
+                    try:
+                        datos["fecha"] = datos["fecha"].date()
+                    except:
+                        pass
+                # Normalizar nombre del campo duracion (con o sin acento)
+                if "duración" in datos:
+                    datos["duracion"] = datos.pop("duración")
                 lista_registros.append(datos)
 
             df = pd.DataFrame(lista_registros)
@@ -88,18 +96,23 @@ elif menu == "Ver historial":
             else:
                 st.success(f"Se encontraron {len(df)} registro(s).")
 
+                # Aseguramos que las columnas necesarias existen
+                for col in ["tipo_sintoma", "intensidad", "duracion", "desencadenante", "notas"]:
+                    if col not in df.columns:
+                        df[col] = "-"
+
                 columnas_mostrar = ["fecha", "tipo_sintoma", "intensidad", "duracion", "desencadenante", "notas"]
-                # Verificar que las columnas existen
-                columnas_disponibles = [c for c in columnas_mostrar if c in df.columns]
-                df_tabla = df[columnas_disponibles]
+                df_tabla = df[columnas_mostrar].copy()
 
                 st.dataframe(df_tabla, use_container_width=True)
                 st.divider()
 
                 # GRAFICA 1: Frecuencia de sintomas
                 st.subheader("Frecuencia de sintomas")
+                conteo = df_tabla["tipo_sintoma"].value_counts().reset_index()
+                conteo.columns = ["tipo_sintoma", "count"]
                 fig1 = px.bar(
-                    df_tabla["tipo_sintoma"].value_counts().reset_index(),
+                    conteo,
                     x="tipo_sintoma",
                     y="count",
                     labels={"tipo_sintoma": "Tipo de sintoma", "count": "Veces registrado"},
