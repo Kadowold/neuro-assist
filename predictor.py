@@ -5,7 +5,7 @@ import pandas as pd
 def obtener_datos_paciente(db, paciente):
     colecciones = {
         "sintomas": ["tipo_sintoma", "intensidad", "desencadenante", "fecha"],
-        "calculadoras": ["escala", "puntaje", "interpretacion", "fecha"],
+        "calculadoras": ["escala", "puntaje", "interpretación", "fecha"],
         "triaje": ["nivel_triaje", "fc", "fr", "temperatura", "sato2", "fecha"],
         "desarrollo": ["porcentaje", "interpretación", "edad", "fecha"],
         "crecimiento": ["peso_kg", "talla_cm", "imc", "peso_interpretacion", "fecha"],
