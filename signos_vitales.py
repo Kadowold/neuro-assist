@@ -19,13 +19,13 @@ def signos_vitales(db):
     st.subheader("Edad del paciente")
     col1, col2 = st.columns(2)
     with col1:
-        unidad_edad = st.radio("Unidad", ["Meses", "Anos"], horizontal=True)
+        unidad_edad = st.radio("Unidad", ["Meses", "Años"], horizontal=True)
     with col2:
         if unidad_edad == "Meses":
             edad = st.number_input("Edad (meses)", min_value=0, max_value=216, value=12)
             edad_meses = edad
         else:
-            edad = st.number_input("Edad (anos)", min_value=0, max_value=18, value=5)
+            edad = st.number_input("Edad (años)", min_value=0, max_value=18, value=5)
             edad_meses = edad * 12
 
     # Rangos normales por edad en meses
@@ -61,8 +61,8 @@ def signos_vitales(db):
         fr = st.number_input("Frecuencia respiratoria (rpm)", min_value=0, max_value=100, value=25)
         temp = st.number_input("Temperatura (C)", min_value=34.0, max_value=42.0, value=37.0, step=0.1)
     with col2:
-        pas = st.number_input("Presion arterial sistolica (mmHg)", min_value=0, max_value=250, value=90)
-        pad = st.number_input("Presion arterial diastolica (mmHg)", min_value=0, max_value=150, value=60)
+        pas = st.number_input("Presión arterial sistolica (mmHg)", min_value=0, max_value=250, value=90)
+        pad = st.number_input("Presión arterial diastolica (mmHg)", min_value=0, max_value=150, value=60)
         sato2 = st.slider("Saturacion de O2 (%)", 70, 100, 98)
 
     peso = st.number_input("Peso (kg) - opcional para presion arterial", min_value=0.0, max_value=150.0, value=0.0, step=0.1)
@@ -137,21 +137,21 @@ def signos_vitales(db):
                     st.success("Dentro de rango normal")
 
             with col5:
-                st.markdown(f"### {icon_sat} Saturacion O2")
+                st.markdown(f"### {icon_sat} Saturación O2")
                 st.markdown(f"**{sato2}%** — {estado_sat}")
                 st.caption("Normal: 95-100%")
                 if tipo_sat == "error":
-                    st.error("Saturacion critica")
+                    st.error("Saturación critica")
                 elif tipo_sat == "warning":
-                    st.warning("Saturacion baja")
+                    st.warning("Saturación baja")
                 else:
-                    st.success("Saturacion normal")
+                    st.success("Saturación normal")
 
             with col6:
                 st.markdown("### 📊 Resumen")
                 estados = [tipo_fc, tipo_fr, tipo_t, tipo_pas, tipo_sat]
                 if "error" in estados:
-                    st.error("PACIENTE CRITICO\nAtencion inmediata")
+                    st.error("PACIENTE CRITICO\nAtención inmediata")
                 elif "warning" in estados:
                     st.warning("PACIENTE INESTABLE\nMonitoreo continuo")
                 else:
@@ -165,8 +165,8 @@ def signos_vitales(db):
             | Frecuencia cardiaca | {fc_min}-{fc_max} lpm | <{fc_amin} o >{fc_amax} lpm |
             | Frecuencia respiratoria | {fr_min}-{fr_max} rpm | <{fr_amin} o >{fr_amax} rpm |
             | Temperatura | 36.0-37.5 C | <35.5 o >39.0 C |
-            | Presion sistolica | {pas_min}-{pas_max} mmHg | <{pas_amin} o >{pas_amax} mmHg |
-            | Saturacion O2 | 95-100% | <90% |
+            | Presión sistolica | {pas_min}-{pas_max} mmHg | <{pas_amin} o >{pas_amax} mmHg |
+            | Saturación O2 | 95-100% | <90% |
             """)
 
             try:
@@ -186,6 +186,6 @@ def signos_vitales(db):
                     "estado_sat": estado_sat,
                     "fecha": datetime.datetime.now()
                 })
-                st.success("Evaluacion guardada en Firebase.")
+                st.success("Evaluación guardada en Firebase.")
             except Exception as e:
                 st.error(f"Error al guardar: {e}")
