@@ -213,24 +213,24 @@ elif menu == "Ver historial":
                 # GRAFICA 3: Desencadenantes mas frecuentes
                 st.subheader("Desencadenantes mas frecuentes")
                 fig3 = px.pie(
-    df_tabla,
-    names="desencadenante",
-    title="Distribucion de desencadenantes",
-    color_discrete_sequence=["#c9a84c", "#f0c96e", "#e07b2a", "#d4a017", "#b8860b", "#f4a261"]
-)
-fig3.update_layout(
-    plot_bgcolor="#0a1628",
-    paper_bgcolor="#0d1f3c",
-    font=dict(color="#e8f0fe"),
-    title_font=dict(color="#f0c96e"),
-    legend=dict(
-        bgcolor="#0d1f3c",
-        bordercolor="#c9a84c44",
-        borderwidth=1,
-        font=dict(color="#e8f0fe")
-    )
-)
-st.plotly_chart(fig3, use_container_width=True)
+                    df_tabla,
+                    names="desencadenante",
+                    title="Distribucion de desencadenantes",
+                    color_discrete_sequence=["#c9a84c", "#f0c96e", "#e07b2a", "#d4a017", "#b8860b", "#f4a261"]
+                )
+                fig3.update_layout(
+                    plot_bgcolor="#0a1628",
+                    paper_bgcolor="#0d1f3c",
+                    font=dict(color="#e8f0fe"),
+                    title_font=dict(color="#f0c96e"),
+                    legend=dict(
+                        bgcolor="#0d1f3c",
+                        bordercolor="#c9a84c44",
+                        borderwidth=1,
+                        font=dict(color="#e8f0fe")
+                    )
+                )
+                st.plotly_chart(fig3, use_container_width=True)
 
                 # Exportar PDF
                 st.divider()
