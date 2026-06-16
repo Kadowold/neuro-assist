@@ -12,6 +12,8 @@ from eeg import visualizador_eeg
 from expediente import expediente_clinico
 from chat_ia import chat_medico_ia
 from dashboard import dashboard_general
+from signos_vitales import signos_vitales
+from perfil import mostrar_perfil_sidebar, tutorial_interactivo
 import firebase_admin
 from firebase_admin import credentials, firestore
 
@@ -36,6 +38,7 @@ if not st.session_state.autenticado:
     st.stop()
 
 mostrar_logout()
+mostrar_perfil_sidebar()
 st.markdown(aplicar_estilos(), unsafe_allow_html=True)
 # Boton modo oscuro/claro
 if "tema" not in st.session_state:
@@ -60,11 +63,13 @@ menu = st.sidebar.selectbox("Navegacion", [
     "Dashboard",
     "Registrar sintoma",
     "Ver historial",
+    "Signos vitales",
     "Calculadoras clinicas",
     "Herramientas pediatricas",
     "Visualizador EEG",
     "Expediente clinico",
-    "Chat IA Medica"
+    "Chat IA Medica",
+    "Tutorial"
 ])
 
 if menu == "Registrar sintoma":
@@ -235,3 +240,8 @@ elif menu == "Chat IA Medica":
     chat_medico_ia(db)
 elif menu == "Dashboard":
     dashboard_general(db)
+elif menu == "Signos vitales":
+    signos_vitales(db)
+
+elif menu == "Tutorial":
+    tutorial_interactivo()
