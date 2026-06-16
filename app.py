@@ -9,6 +9,7 @@ from calculadoras import escala_glasgow, escala_nihss, escala_mini_mental, escal
 from pediatria import calculadora_dosis, curvas_crecimiento, desarrollo_infantil, triaje_pediatrico
 from login import mostrar_login, mostrar_logout
 from eeg import visualizador_eeg
+from expediente import expediente_clinico
 import firebase_admin
 from firebase_admin import credentials, firestore
 
@@ -58,7 +59,8 @@ menu = st.sidebar.selectbox("Navegacion", [
     "Ver historial",
     "Calculadoras clinicas",
     "Herramientas pediatricas",
-    "Visualizador EEG"
+    "Visualizador EEG",
+    "Expediente clinico"
 ])
 
 if menu == "Registrar sintoma":
@@ -223,3 +225,5 @@ elif menu == "Herramientas pediatricas":
         triaje_pediatrico(db)
 elif menu == "Visualizador EEG":
     visualizador_eeg(db)
+elif menu == "Expediente clinico":
+    expediente_clinico(db)
