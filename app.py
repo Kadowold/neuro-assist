@@ -10,6 +10,7 @@ from pediatria import calculadora_dosis, curvas_crecimiento, desarrollo_infantil
 from login import mostrar_login, mostrar_logout
 from eeg import visualizador_eeg
 from expediente import expediente_clinico
+from chat_ia import chat_medico_ia
 import firebase_admin
 from firebase_admin import credentials, firestore
 
@@ -60,7 +61,8 @@ menu = st.sidebar.selectbox("Navegacion", [
     "Calculadoras clinicas",
     "Herramientas pediatricas",
     "Visualizador EEG",
-    "Expediente clinico"
+    "Expediente clinico",
+    "Chat IA Medica"
 ])
 
 if menu == "Registrar sintoma":
@@ -227,3 +229,5 @@ elif menu == "Visualizador EEG":
     visualizador_eeg(db)
 elif menu == "Expediente clinico":
     expediente_clinico(db)
+elif menu == "Chat IA Medica":
+    chat_medico_ia(db)
