@@ -14,6 +14,7 @@ from chat_ia import chat_medico_ia
 from dashboard import dashboard_general
 from signos_vitales import signos_vitales
 from perfil import mostrar_perfil_sidebar, tutorial_interactivo
+from voz_medica import notas_por_voz
 import firebase_admin
 from firebase_admin import credentials, firestore
 
@@ -99,12 +100,14 @@ st.markdown(f"""
 
 menu = st.sidebar.selectbox("Navegacion", [
     "Dashboard",
+    "Agenda medica",
     "Registrar sintoma",
     "Ver historial",
     "Signos vitales",
     "Calculadoras clinicas",
     "Herramientas pediatricas",
     "Visualizador EEG",
+    "Notas por voz",
     "Expediente clinico",
     "Chat IA Medica",
     "Tutorial"
@@ -296,3 +299,5 @@ elif menu == "Signos vitales":
 
 elif menu == "Tutorial":
     tutorial_interactivo()
+elif menu == "Notas por voz":
+    notas_por_voz(db)
