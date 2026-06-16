@@ -81,7 +81,7 @@ st.markdown(f"""
             letter-spacing: 2px;
             text-transform: uppercase;
             margin-top: 4px;
-        ">Sistema Medico Avanzado · IA Integrada</div>
+        ">Sistema Medico Avanzado</div>
     </div>
     <div style="
         margin-left: auto;
@@ -114,10 +114,10 @@ if menu == "Registrar sintoma":
     st.header("Registrar nuevo sintoma")
     paciente = st.text_input("Nombre del paciente")
     fecha = st.date_input("Fecha del sintoma", value=date.today())
-    tipo_sintoma = st.selectbox("Tipo de sintoma", ["Migrana", "Convulsion", "Mareo", "Perdida de memoria", "Hormigueo", "Vision borrosa", "Otro"])
+    tipo_sintoma = st.selectbox("Tipo de sintoma", ["Migraña", "Convulsión", "Mareo", "Perdida de memoria", "Hormigueo", "Vision borrosa", "Otro"])
     intensidad = st.slider("Intensidad del dolor (1=leve, 10=grave)", 1, 10, 5)
-    duracion = st.number_input("Duracion (en minutos)", min_value=1, value=30)
-    desencadenante = st.selectbox("Posible desencadenante", ["Estres", "Falta de sueno", "Alimentacion", "Pantallas", "Clima", "Sin desencadenante aparente", "Otro"])
+    duración = st.number_input("Duración (en minutos)", min_value=1, value=30)
+    desencadenante = st.selectbox("Posible desencadenante", ["Estrés", "Falta de sueño", "Alimentación", "Pantallas", "Clima", "Sin desencadenante aparente", "Otro"])
     notas = st.text_area("Notas adicionales (opcional)")
 
     if st.button("Guardar sintoma"):
@@ -130,7 +130,7 @@ if menu == "Registrar sintoma":
                 "fecha": fecha_convertida,
                 "tipo_sintoma": tipo_sintoma,
                 "intensidad": intensidad,
-                "duracion": duracion,
+                "duración": duración,
                 "desencadenante": desencadenante,
                 "notas": notas,
                 "creado_el": firestore.SERVER_TIMESTAMP
@@ -163,7 +163,7 @@ elif menu == "Ver historial":
                         pass
                 # Normalizar nombre del campo duracion (con o sin acento)
                 if "duración" in datos:
-                    datos["duracion"] = datos.pop("duración")
+                    datos["duración"] = datos.pop("duración")
                 lista_registros.append(datos)
           
             df = pd.DataFrame(lista_registros)
@@ -174,11 +174,11 @@ elif menu == "Ver historial":
                 st.success(f"Se encontraron {len(df)} registro(s).")
 
                 # Aseguramos que las columnas necesarias existen
-                for col in ["tipo_sintoma", "intensidad", "duracion", "desencadenante", "notas"]:
+                for col in ["tipo_sintoma", "intensidad", "duración", "desencadenante", "notas"]:
                     if col not in df.columns:
                         df[col] = "-"
 
-                columnas_mostrar = ["fecha", "tipo_sintoma", "intensidad", "duracion", "desencadenante", "notas"]
+                columnas_mostrar = ["fecha", "tipo_sintoma", "intensidad", "duración", "desencadenante", "notas"]
                 df_tabla = df[columnas_mostrar].copy()
 
                 st.dataframe(df_tabla, use_container_width=True)
