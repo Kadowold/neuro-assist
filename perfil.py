@@ -185,6 +185,37 @@ def tutorial_interactivo():
                 "Ve estadisticas generales: total pacientes, sintomas, calculadoras",
                 "Explora las graficas por pestana: Sintomas, Calculadoras, Pediatria, EEG",
                 "Los datos se actualizan en tiempo real desde Firebase"
+        "Agenda medica": {
+            "icono": "📅",
+            "descripcion": "Gestiona citas y seguimientos de tus pacientes con un sistema completo de agenda.",
+            "pasos": [
+                "Ve a 'Agenda medica' en el menu",
+                "Pestana 'Nueva cita': ingresa nombre del paciente, fecha, hora y tipo de cita",
+                "Selecciona la prioridad: Normal, Alta o Urgente",
+                "Escribe el motivo de la cita y notas adicionales",
+                "Presiona 'Guardar cita' — se guarda en Firebase automaticamente",
+                "Pestana 'Ver agenda': filtra citas por rango de fechas",
+                "Puedes marcar citas como completadas, cancelarlas o eliminarlas",
+                "Pestana 'Proximas citas': ve rapidamente las citas de hoy y manana"
+            ]
+        },
+        "Notas por voz": {
+            "icono": "🎙️",
+            "descripcion": "Dicta tus notas medicas con voz y la IA las transcribe y redacta profesionalmente.",
+            "pasos": [
+                "Ve a 'Notas por voz' en el menu",
+                "Ingresa el nombre del paciente",
+                "Selecciona el tipo de nota: Evolucion, Historia clinica, Urgencias, Resumen",
+                "Opcion 1 - Audio: graba desde tu celular con la app de grabadora de voz",
+                "Sube el archivo de audio (WAV, MP3, M4A, OGG)",
+                "Presiona 'Transcribir audio' — Whisper AI transcribe automaticamente",
+                "Edita la transcripcion si es necesario",
+                "Presiona 'Mejorar con IA' — Claude redacta la nota profesionalmente",
+                "Opcion 2 - Texto: escribe directamente y presiona 'Mejorar texto con IA'",
+                "Guarda la nota en Firebase o descargala en PDF",
+                "Pestana 'Notas guardadas': busca notas anteriores por paciente"
+            ]
+        },
             ]
         }
     }
