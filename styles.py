@@ -10,26 +10,39 @@ def aplicar_estilos():
         btn = "#2d6a9f"
         btn_hover = "#4fc3f7"
         sidebar = "#1a1f2e"
+        input_bg = "#1e2736"
     else:
-        bg = "#f0f4f8"
+        bg = "#ffffff"
         card = "#ffffff"
         texto = "#1a202c"
         borde = "#3182ce"
         btn = "#3182ce"
         btn_hover = "#2b6cb0"
-        sidebar = "#e2e8f0"
+        sidebar = "#ffffff"
+        input_bg = "#ffffff"
 
     css = f"""
     <style>
-        .stApp {{ background-color: {bg}; color: {texto}; }}
+        .stApp {{
+            background-color: {bg} !important;
+            color: {texto} !important;
+        }}
         [data-testid="stSidebar"] {{
-            background-color: {sidebar};
+            background-color: {sidebar} !important;
             border-right: 2px solid {borde};
         }}
-        h1, h2, h3 {{ color: {borde} !important; }}
+        [data-testid="stSidebar"] * {{
+            color: {texto} !important;
+        }}
+        h1, h2, h3 {{
+            color: {borde} !important;
+        }}
+        p, label, span, div {{
+            color: {texto} !important;
+        }}
         .stButton > button {{
-            background-color: {btn};
-            color: white;
+            background-color: {btn} !important;
+            color: white !important;
             border: none;
             border-radius: 8px;
             padding: 10px 24px;
@@ -38,21 +51,36 @@ def aplicar_estilos():
             width: 100%;
         }}
         .stButton > button:hover {{
-            background-color: {btn_hover};
-            color: {bg};
+            background-color: {btn_hover} !important;
         }}
         .stTextInput > div > div > input,
-        .stTextArea > div > div > textarea {{
-            background-color: {card};
-            color: {texto};
-            border: 1px solid {borde};
+        .stTextArea > div > div > textarea,
+        .stNumberInput > div > div > input {{
+            background-color: {input_bg} !important;
+            color: {texto} !important;
+            border: 1px solid {borde} !important;
             border-radius: 6px;
         }}
         .stSelectbox > div > div {{
-            background-color: {card};
-            color: {texto};
+            background-color: {input_bg} !important;
+            color: {texto} !important;
         }}
-        hr {{ border-color: {borde}; }}
+        .stRadio > div {{
+            background-color: transparent !important;
+        }}
+        .stCheckbox > div {{
+            background-color: transparent !important;
+        }}
+        [data-testid="stMetricValue"] {{
+            color: {borde} !important;
+        }}
+        hr {{
+            border-color: {borde};
+        }}
+        .stDataFrame {{
+            border: 1px solid {borde};
+            border-radius: 8px;
+        }}
         footer {{ visibility: hidden; }}
         #MainMenu {{ visibility: hidden; }}
     </style>
