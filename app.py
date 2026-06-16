@@ -108,6 +108,7 @@ menu = st.sidebar.selectbox("Navegacion", [
     "Calculadoras clinicas",
     "Herramientas pediatricas",
     "Visualizador EEG",
+    "Notas por voz",
     "Expediente clinico",
     "Chat IA Medica",
     "Tutorial"
