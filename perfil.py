@@ -94,7 +94,7 @@ def tutorial_interactivo():
             "pasos": [
                 "Inicia sesion con tu usuario y contrasena",
                 "Usa el menu lateral izquierdo para navegar entre modulos",
-                "El boton ☀️/🌙 en la esquina superior cambia entre modo claro y oscuro",
+                "El boton del sol/luna en la esquina superior cambia entre modo claro y oscuro",
                 "Todos los datos se guardan automaticamente en la nube"
             ]
         },
@@ -185,6 +185,8 @@ def tutorial_interactivo():
                 "Ve estadisticas generales: total pacientes, sintomas, calculadoras",
                 "Explora las graficas por pestana: Sintomas, Calculadoras, Pediatria, EEG",
                 "Los datos se actualizan en tiempo real desde Firebase"
+            ]
+        },
         "Agenda medica": {
             "icono": "📅",
             "descripcion": "Gestiona citas y seguimientos de tus pacientes con un sistema completo de agenda.",
@@ -216,6 +218,18 @@ def tutorial_interactivo():
                 "Pestana 'Notas guardadas': busca notas anteriores por paciente"
             ]
         },
+        "Predictor de riesgo IA": {
+            "icono": "🔍",
+            "descripcion": "Analiza todos los datos del paciente con IA y predice riesgos neurologicos futuros.",
+            "pasos": [
+                "Ve a 'Predictor de riesgo IA' en el menu",
+                "Escribe el nombre exacto del paciente como esta registrado en el sistema",
+                "Ingresa edad, sexo y antecedentes familiares relevantes",
+                "Presiona 'Analizar y predecir riesgo con IA'",
+                "La IA recopila TODOS los datos del paciente en Firebase",
+                "Genera un reporte con 9 secciones: riesgos, patrones, predicciones, recomendaciones",
+                "Guarda el reporte en Firebase o descargalo en PDF",
+                "Entre mas datos tenga el paciente, mas precisa sera la prediccion"
             ]
         }
     }
@@ -233,13 +247,13 @@ def tutorial_interactivo():
     for i, paso in enumerate(modulo["pasos"], 1):
         st.markdown(f"""
         <div style="
-            background: linear-gradient(135deg, #1e3a5f22, #2d6a9f22);
-            border-left: 4px solid #2563eb;
+            background: linear-gradient(135deg, #0a162822, #1a3a6e22);
+            border-left: 4px solid #c9a84c;
             border-radius: 8px;
             padding: 12px 16px;
             margin: 8px 0;
         ">
-            <span style="color: #60a5fa; font-weight: 700">Paso {i}:</span>
+            <span style="color: #f0c96e; font-weight: 700">Paso {i}:</span>
             <span style="margin-left: 8px">{paso}</span>
         </div>
         """, unsafe_allow_html=True)
