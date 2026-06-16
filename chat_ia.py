@@ -52,6 +52,7 @@ def mostrar_mensaje(rol, contenido):
 
 def obtener_respuesta_ia(mensajes_historial):
     try:
+        st.write("Secrets disponibles:", list(st.secrets.keys()))
         api_key = st.secrets["ANTHROPIC_API_KEY"]
         if not api_key:
             return "Error: No se encontro la API key de Anthropic en los secrets."
