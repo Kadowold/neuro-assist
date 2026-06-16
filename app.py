@@ -1,3 +1,7 @@
+import importlib
+import perfil
+importlib.reload(perfil)  # <-- Esto borra el caché de perfil.py en cada clic
+from perfil import mostrar_perfil_sidebar, tutorial_interactivo
 import streamlit as st
 import pandas as pd
 import plotly.express as px
