@@ -99,7 +99,7 @@ def mostrar_login():
 
     with st.form("login_form"):
         usuario = st.text_input("Usuario", placeholder="Ingresa tu usuario")
-        password = st.text_input("Contrasena", type="password", placeholder="Ingresa tu contrasena")
+        password = st.text_input("Contraseña", type="password", placeholder="Ingresa tu contraseña")
         submitted = st.form_submit_button("Iniciar sesion")
 
         if submitted:
@@ -108,7 +108,7 @@ def mostrar_login():
                 st.session_state.usuario = usuario
                 st.rerun()
             else:
-                st.error("Usuario o contrasena incorrectos.")
+                st.error("Usuario o contraseña incorrectos.")
 
 def mostrar_logout():
     with st.sidebar:
