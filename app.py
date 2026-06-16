@@ -24,6 +24,10 @@ from predictor import predictor_riesgo
 from diagnostico import diagnostico_diferencial
 from estadisticas import estadisticas_clinica
 from monitor import monitor_criticos
+from vacunas_nutricion import (
+    evaluador_nutricional_ia,
+    calculadora_vacunas,
+)
 import firebase_admin
 from firebase_admin import credentials, firestore
 
@@ -112,6 +116,7 @@ menu = st.sidebar.selectbox("Navegacion", [
     "Monitor criticos",
     "Agenda medica",
     "Registrar sintoma",
+    "Evaluador Nutricional",
     "Ver historial",
     "Signos vitales",
     "Calculadoras clinicas",
@@ -328,3 +333,5 @@ elif menu == "Estadisticas clinica":
     estadisticas_clinica(db)
 elif menu == "Monitor criticos":
     monitor_criticos(db)
+elif menu == "Evaluador Nutricional":
+    evaluador_nutricional_ia(db)
