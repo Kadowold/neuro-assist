@@ -7,7 +7,7 @@ def mostrar_perfil_sidebar():
             "especialidad": "Pediatria",
             "cedula": "Ced. Prof. 12345678",
             "hospital": "Hospital La Raza",
-            "avatar": "👩‍⚕️"
+            "avatar": "👩🏻‍⚕️"
         },
         "kadowold": {
             "nombre": "Admin",
