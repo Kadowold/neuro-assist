@@ -223,16 +223,20 @@ elif menu == "Ver historial":
                     color_discrete_sequence=["#c9a84c", "#f0c96e", "#e07b2a", "#d4a017", "#b8860b", "#f4a261"]
                 )
                 fig3.update_layout(
-                    plot_bgcolor="#0a1628",
-                    paper_bgcolor="#0d1f3c",
-                    font=dict(color="#e8f0fe"),
-                    title_font=dict(color="#f0c96e"),
+                    plot_bgcolor="#c9a84c",
+                    paper_bgcolor="#c9a84c",
+                    font=dict(color="#0a1628"),
+                    title_font=dict(color="#0a1628", size=16),
                     legend=dict(
-                        bgcolor="#0d1f3c",
-                        bordercolor="#c9a84c44",
+                        bgcolor="#f0c96e",
+                        bordercolor="#0a1628",
                         borderwidth=1,
-                        font=dict(color="#e8f0fe")
+                        font=dict(color="#0a1628", size=12)
                     )
+                )
+                fig3.update_traces(
+                    textfont=dict(color="#0a1628", size=13),
+                    marker=dict(line=dict(color="#0a1628", width=2))
                 )
                 st.plotly_chart(fig3, use_container_width=True)
 
