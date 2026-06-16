@@ -51,13 +51,51 @@ with col_tema:
         st.session_state.tema = "claro" if st.session_state.tema == "oscuro" else "oscuro"
         st.rerun()
 
-col1, col2 = st.columns([1, 4])
-with col1:
-    st.markdown("## 🧠")
-with col2:
-    st.markdown("# NeuroApp")
-    st.markdown("*Sistema de seguimiento de sintomas neurologicos*")
-st.divider()
+st.markdown(f"""
+<div style="
+    background: linear-gradient(135deg, #0a1628 0%, #0d1f3c 50%, #1a3a6e 100%);
+    border: 1px solid #c9a84c44;
+    border-radius: 16px;
+    padding: 24px 32px;
+    margin-bottom: 24px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.4), inset 0 1px 0 #c9a84c22;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+">
+    <div style="font-size: 52px; filter: drop-shadow(0 0 12px #c9a84c88)">🧠</div>
+    <div>
+        <div style="
+            font-family: 'Playfair Display', serif;
+            color: #f0c96e;
+            font-size: 2.2rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            line-height: 1.1;
+            text-shadow: 0 2px 20px #c9a84c66;
+        ">NeuroApp</div>
+        <div style="
+            color: #8ba3cc;
+            font-size: 0.85rem;
+            font-weight: 400;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-top: 4px;
+        ">Sistema Medico Avanzado · IA Integrada</div>
+    </div>
+    <div style="
+        margin-left: auto;
+        background: #c9a84c22;
+        border: 1px solid #c9a84c44;
+        border-radius: 8px;
+        padding: 6px 12px;
+        color: #c9a84c;
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: 1px;
+    ">PREMIUM</div>
+</div>
+""", unsafe_allow_html=True)
 
 menu = st.sidebar.selectbox("Navegacion", [
     "Dashboard",
