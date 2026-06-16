@@ -7,9 +7,9 @@ def obtener_datos_paciente(db, paciente):
         "sintomas": ["tipo_sintoma", "intensidad", "desencadenante", "fecha"],
         "calculadoras": ["escala", "puntaje", "interpretacion", "fecha"],
         "triaje": ["nivel_triaje", "fc", "fr", "temperatura", "sato2", "fecha"],
-        "desarrollo": ["porcentaje", "interpretacion", "edad", "fecha"],
+        "desarrollo": ["porcentaje", "interpretación", "edad", "fecha"],
         "crecimiento": ["peso_kg", "talla_cm", "imc", "peso_interpretacion", "fecha"],
-        "eeg": ["estado", "interpretacion", "picos_detectados", "fecha"],
+        "eeg": ["estado", "interpretación", "picos_detectados", "fecha"],
         "signos_vitales": ["fc", "fr", "temperatura", "sato2", "estado_fc", "estado_fr", "fecha"],
     }
 
@@ -44,7 +44,7 @@ def generar_prediccion_ia(paciente, datos, edad, sexo, antecedentes):
 
         resumen_datos = f"""
 PACIENTE: {paciente}
-EDAD: {edad} anos | SEXO: {sexo}
+EDAD: {edad} años | SEXO: {sexo}
 ANTECEDENTES FAMILIARES: {antecedentes}
 
 HISTORIAL DE SINTOMAS NEUROLOGICOS ({len(datos['sintomas'])} registros):
@@ -81,7 +81,7 @@ Genera un reporte estructurado con las siguientes secciones en español:
 Resumen conciso del estado actual del paciente basado en los datos disponibles.
 
 ## 2. RIESGOS NEUROLOGICOS IDENTIFICADOS
-Lista de riesgos especificos con nivel (ALTO/MEDIO/BAJO) y justificacion clinica basada en los datos.
+Lista de riesgos especificos con nivel (ALTO/MEDIO/BAJO) y justificación clinica basada en los datos.
 
 ## 3. PATRONES DETECTADOS
 Patrones clinicos relevantes encontrados en el historial (frecuencia de sintomas, tendencias, correlaciones).
@@ -90,7 +90,7 @@ Patrones clinicos relevantes encontrados en el historial (frecuencia de sintomas
 Proyeccion clinica basada en tendencias actuales.
 
 ## 5. PREDICCION A LARGO PLAZO (6-12 meses)
-Proyeccion de evolucion probable si continua el patron actual.
+Proyeccion de evolución probable si continua el patron actual.
 
 ## 6. FACTORES PROTECTORES
 Aspectos positivos del historial que reducen riesgos.
@@ -116,7 +116,7 @@ Si los datos son insuficientes para alguna seccion, indicalo claramente."""
         return respuesta.content[0].text
 
     except Exception as e:
-        return f"Error al generar prediccion: {str(e)}"
+        return f"Error al generar predicción: {str(e)}"
 
 
 def predictor_riesgo(db):
@@ -143,7 +143,7 @@ def predictor_riesgo(db):
     col1, col2 = st.columns(2)
     with col1:
         paciente = st.text_input("Nombre del paciente", placeholder="Nombre exacto como esta en el sistema")
-        edad = st.number_input("Edad del paciente (anos)", min_value=0, max_value=120, value=5)
+        edad = st.number_input("Edad del paciente (años)", min_value=0, max_value=120, value=5)
     with col2:
         sexo = st.radio("Sexo", ["Masculino", "Femenino"], horizontal=True)
         antecedentes = st.text_area(
@@ -216,7 +216,7 @@ def predictor_riesgo(db):
                             "sexo": sexo,
                             "antecedentes": antecedentes,
                             "total_registros_analizados": total_registros,
-                            "prediccion": prediccion,
+                            "predicción": predicción,
                             "medico": st.session_state.get("usuario", ""),
                             "fecha": datetime.datetime.now()
                         })
@@ -278,7 +278,7 @@ def predictor_riesgo(db):
                         st.download_button(
                             label="Descargar PDF del reporte",
                             data=pdf_bytes,
-                            file_name=f"prediccion_riesgo_{paciente}_{datetime.datetime.now().strftime('%Y%m%d')}.pdf",
+                            file_name=f"predicción_riesgo_{paciente}_{datetime.datetime.now().strftime('%Y%m%d')}.pdf",
                             mime="application/pdf"
                         )
                     except Exception as e:
@@ -308,7 +308,7 @@ def predictor_riesgo(db):
                 st.info("No se encontraron predicciones para ese paciente.")
             else:
                 for pred in predicciones:
-                    with st.expander(f"🔍 Prediccion del {pred.get('fecha', '')} — {pred.get('total_registros_analizados', 0)} registros analizados"):
-                        st.markdown(pred.get("prediccion", ""))
+                    with st.expander(f"🔍 Predicción del {pred.get('fecha', '')} — {pred.get('total_registros_analizados', 0)} registros analizados"):
+                        st.markdown(pred.get("predicción", ""))
         except Exception as e:
             st.error(f"Error: {e}")
