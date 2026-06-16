@@ -10,15 +10,15 @@ def calculadora_dosis(db):
     peso = st.number_input("Peso del paciente (kg)", min_value=0.5, max_value=150.0, value=10.0, step=0.1)
 
     medicamentos = {
-        "Paracetamol": {"dosis": 15, "intervalo": "cada 6-8 horas", "max_dia": 60, "presentacion": "Suspension 160mg/5ml"},
-        "Ibuprofeno": {"dosis": 10, "intervalo": "cada 6-8 horas", "max_dia": 40, "presentacion": "Suspension 200mg/5ml"},
-        "Amoxicilina": {"dosis": 25, "intervalo": "cada 8 horas", "max_dia": 90, "presentacion": "Suspension 250mg/5ml"},
-        "Amoxicilina-Clavulanato": {"dosis": 25, "intervalo": "cada 8 horas", "max_dia": 90, "presentacion": "Suspension 250mg/5ml"},
-        "Azitromicina": {"dosis": 10, "intervalo": "una vez al dia por 3 dias", "max_dia": 10, "presentacion": "Suspension 200mg/5ml"},
-        "Cetirizina": {"dosis": 0.25, "intervalo": "una vez al dia", "max_dia": 0.5, "presentacion": "Jarabe 5mg/5ml"},
-        "Salbutamol": {"dosis": 0.1, "intervalo": "cada 4-6 horas", "max_dia": 0.4, "presentacion": "Nebulizacion o inhalador"},
-        "Metoclopramida": {"dosis": 0.1, "intervalo": "cada 8 horas", "max_dia": 0.5, "presentacion": "Jarabe 5mg/5ml"},
-        "Loratadina": {"dosis": 0.2, "intervalo": "una vez al dia", "max_dia": 0.2, "presentacion": "Jarabe 5mg/5ml"},
+        "Paracetamol": {"dosis": 15, "intervalo": "cada 6-8 horas", "max_dia": 60, "presentación": "Suspensión 160mg/5ml"},
+        "Ibuprofeno": {"dosis": 10, "intervalo": "cada 6-8 horas", "max_dia": 40, "presentación": "Suspensión 200mg/5ml"},
+        "Amoxicilina": {"dosis": 25, "intervalo": "cada 8 horas", "max_dia": 90, "presentación": "Suspensión 250mg/5ml"},
+        "Amoxicilina-Clavulanato": {"dosis": 25, "intervalo": "cada 8 horas", "max_dia": 90, "presentación": "Suspensión 250mg/5ml"},
+        "Azitromicina": {"dosis": 10, "intervalo": "una vez al dia por 3 dias", "max_dia": 10, "presentación": "Suspensión 200mg/5ml"},
+        "Cetirizina": {"dosis": 0.25, "intervalo": "una vez al dia", "max_dia": 0.5, "presentación": "Jarabe 5mg/5ml"},
+        "Salbutamol": {"dosis": 0.1, "intervalo": "cada 4-6 horas", "max_dia": 0.4, "presentación": "Nebulización o inhalador"},
+        "Metoclopramida": {"dosis": 0.1, "intervalo": "cada 8 horas", "max_dia": 0.5, "presentación": "Jarabe 5mg/5ml"},
+        "Loratadina": {"dosis": 0.2, "intervalo": "una vez al dia", "max_dia": 0.2, "presentación": "Jarabe 5mg/5ml"},
     }
 
     medicamento = st.selectbox("Medicamento", list(medicamentos.keys()))
@@ -34,7 +34,7 @@ def calculadora_dosis(db):
             col1.metric("Dosis por toma", f"{dosis_calculada:.1f} mg")
             col2.metric("Dosis maxima diaria", f"{dosis_maxima:.1f} mg")
             st.info(f"Intervalo: {med['intervalo']}")
-            st.info(f"Presentacion: {med['presentacion']}")
+            st.info(f"Presentacion: {med['presentación']}")
             st.warning("Este calculo es orientativo. Verificar siempre con criterio clinico.")
             try:
                 db.collection("dosis").add({
@@ -59,7 +59,7 @@ def curvas_crecimiento(db):
     peso = st.number_input("Peso (kg)", min_value=0.5, max_value=30.0, value=10.0, step=0.1)
     talla = st.number_input("Talla (cm)", min_value=40.0, max_value=130.0, value=75.0, step=0.5)
 
-    tablas_nino = {
+    tablas_niño = {
         0: (2.5, 3.3, 4.4, 46.1, 49.9, 53.7),
         3: (5.0, 6.4, 7.9, 57.3, 61.4, 65.5),
         6: (6.4, 7.9, 9.8, 63.3, 67.6, 71.9),
@@ -71,7 +71,7 @@ def curvas_crecimiento(db):
         48: (12.7, 16.3, 21.2, 95.0, 103.3, 111.5),
         60: (14.1, 18.3, 24.2, 100.7, 110.0, 119.2),
     }
-    tablas_nina = {
+    tablas_niña = {
         0: (2.4, 3.2, 4.2, 45.4, 49.1, 52.9),
         3: (4.6, 5.8, 7.4, 55.6, 59.8, 64.0),
         6: (5.8, 7.3, 9.3, 61.2, 65.7, 70.2),
@@ -84,7 +84,7 @@ def curvas_crecimiento(db):
         60: (13.2, 18.2, 24.9, 98.7, 109.4, 120.2),
     }
 
-    tabla = tablas_nino if sexo == "Masculino" else tablas_nina
+    tabla = tablas_niño if sexo == "Masculino" else tablas_niña
     edades = sorted(tabla.keys())
     edad_ref = min(edades, key=lambda x: abs(x - edad_meses))
     p3p, p50p, p97p, p3t, p50t, p97t = tabla[edad_ref]
@@ -121,8 +121,8 @@ def curvas_crecimiento(db):
                 st.info(f"Talla por encima del percentil 97 (> {p97t} cm).")
 
             if imc < 14:
-                imc_interp = "Desnutricion"
-                st.error(f"IMC {imc:.1f} — Desnutricion.")
+                imc_interp = "Desnutrición"
+                st.error(f"IMC {imc:.1f} — Desnutrición.")
             elif imc < 18:
                 imc_interp = "Normal"
                 st.success(f"IMC {imc:.1f} — Normal.")
@@ -146,7 +146,7 @@ def curvas_crecimiento(db):
                     "imc_interpretacion": imc_interp,
                     "fecha": datetime.datetime.now()
                 })
-                st.success("Evaluacion guardada en Firebase.")
+                st.success("Evaluación guardada en Firebase.")
             except Exception as e:
                 st.error(f"Error al guardar: {e}")
 
@@ -159,7 +159,7 @@ def desarrollo_infantil(db):
     paciente = st.text_input("Nombre del paciente", key="des_paciente")
     edad = st.selectbox("Edad del nino", [
         "2 meses", "4 meses", "6 meses", "9 meses",
-        "12 meses", "18 meses", "24 meses", "3 anos", "4 anos", "5 anos"
+        "12 meses", "18 meses", "24 meses", "3 años", "4 años", "5 años"
     ])
 
     hitos = {
@@ -194,14 +194,14 @@ def desarrollo_infantil(db):
             st.divider()
 
             if porcentaje >= 80:
-                interpretacion = "Desarrollo adecuado para la edad."
-                st.success(interpretacion)
+                interpretación = "Desarrollo adecuado para la edad."
+                st.success(interpretación)
             elif porcentaje >= 60:
-                interpretacion = "Algunos retrasos. Seguimiento en 3 meses."
-                st.warning(interpretacion)
+                interpretación = "Algunos retrasos. Seguimiento en 3 meses."
+                st.warning(interpretación)
             else:
-                interpretacion = "Retraso significativo. Evaluacion especializada urgente."
-                st.error(interpretacion)
+                interpretación = "Retraso significativo. Evaluación especializada urgente."
+                st.error(interpretación)
 
             try:
                 db.collection("desarrollo").add({
@@ -210,7 +210,7 @@ def desarrollo_infantil(db):
                     "hitos_cumplidos": hitos_cumplidos,
                     "total_hitos": total,
                     "porcentaje": round(porcentaje, 1),
-                    "interpretacion": interpretacion,
+                    "interpretacion": interpretación,
                     "fecha": datetime.datetime.now()
                 })
                 st.success("Evaluacion guardada en Firebase.")
@@ -220,7 +220,7 @@ def desarrollo_infantil(db):
 
 def triaje_pediatrico(db):
     st.header("Triaje Pediatrico")
-    st.markdown("> Detecta signos de alarma y determina urgencia de atencion.")
+    st.markdown("> Detecta signos de alarma y determina urgencia de atención.")
     st.divider()
 
     paciente = st.text_input("Nombre del paciente", key="triaje_paciente")
@@ -236,20 +236,20 @@ def triaje_pediatrico(db):
     with col3:
         temp = st.number_input("Temperatura (C)", min_value=34.0, max_value=42.0, value=37.0, step=0.1)
 
-    sato2 = st.slider("Saturacion de O2 (%)", 70, 100, 98)
+    sato2 = st.slider("Saturación de O2 (%)", 70, 100, 98)
 
     st.subheader("Signos de alarma presentes")
     alarmas_lista = [
         "No responde o respuesta minima",
         "Dificultad respiratoria severa",
         "Cianosis",
-        "Convulsion activa o reciente",
+        "Convulsión activa o reciente",
         "Fontanela abombada",
         "Petequias o purpura generalizada",
         "Llanto inconsolable mas de 2 horas",
         "Rechazo total del alimento en menor de 3 meses",
         "Vomitos en proyectil repetidos",
-        "Deshidratacion severa",
+        "Deshidratación severa",
         "Fiebre en menor de 3 meses",
         "Rigidez de nuca",
     ]
@@ -292,10 +292,10 @@ def triaje_pediatrico(db):
 
             if sato2 < 90:
                 puntos += 3
-                alertas.append("Saturacion critica < 90%")
+                alertas.append("Saturación critica < 90%")
             elif sato2 < 94:
                 puntos += 2
-                alertas.append("Saturacion baja < 94%")
+                alertas.append("Saturación baja < 94%")
 
             puntos += len(alarmas_presentes) * 2
 
@@ -308,20 +308,20 @@ def triaje_pediatrico(db):
 
             if puntos >= 6:
                 nivel = "ROJO - EMERGENCIA"
-                interpretacion = "Atencion inmediata. Riesgo vital."
-                st.error(f"{nivel}: {interpretacion}")
+                interpretacion = "Atención inmediata. Riesgo vital."
+                st.error(f"{nivel}: {interpretación}")
             elif puntos >= 3:
                 nivel = "NARANJA - URGENCIA"
-                interpretacion = "Atencion en menos de 30 minutos."
-                st.warning(f"{nivel}: {interpretacion}")
+                interpretación = "Atención en menos de 30 minutos."
+                st.warning(f"{nivel}: {interpretación}")
             elif puntos >= 1:
                 nivel = "AMARILLO - SEMI-URGENCIA"
-                interpretacion = "Atencion en menos de 2 horas."
-                st.warning(f"{nivel}: {interpretacion}")
+                interpretación = "Atención en menos de 2 horas."
+                st.warning(f"{nivel}: {interpretación}")
             else:
                 nivel = "VERDE - NO URGENTE"
-                interpretacion = "Puede esperar atencion programada."
-                st.success(f"{nivel}: {interpretacion}")
+                interpretación = "Puede esperar atención programada."
+                st.success(f"{nivel}: {interpretación}")
 
             try:
                 db.collection("triaje").add({
@@ -333,7 +333,7 @@ def triaje_pediatrico(db):
                     "temperatura": temp,
                     "sato2": int(sato2),
                     "nivel_triaje": nivel,
-                    "interpretacion": interpretacion,
+                    "interpretación": interpretacion,
                     "alarmas_presentes": alarmas_presentes,
                     "fecha": datetime.datetime.now()
                 })
