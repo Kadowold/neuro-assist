@@ -2,7 +2,7 @@ import streamlit as st
 import openai 
 
 
-def evaluador_nutricional_ia():
+def evaluador_nutricional_ia(db=None): 
     st.subheader("👶 Evaluador Nutricional Pediátrico con IA")
 
     col1, col2, col3 = st.columns(3)
