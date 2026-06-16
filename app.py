@@ -16,6 +16,7 @@ from signos_vitales import signos_vitales
 from perfil import mostrar_perfil_sidebar, tutorial_interactivo
 from voz_medica import notas_por_voz
 from agenda import agenda_medica
+from predictor import predictor_riesgo
 import firebase_admin
 from firebase_admin import credentials, firestore
 
@@ -109,6 +110,7 @@ menu = st.sidebar.selectbox("Navegacion", [
     "Herramientas pediatricas",
     "Visualizador EEG",
     "Notas por voz",
+    "Predictor de riesgo IA",
     "Expediente clinico",
     "Chat IA Medica",
     "Tutorial"
@@ -308,3 +310,5 @@ elif menu == "Notas por voz":
     notas_por_voz(db)
 elif menu == "Agenda medica":
     agenda_medica(db)
+elif menu == "Predictor de riesgo IA":
+    predictor_riesgo(db)
