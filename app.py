@@ -11,6 +11,7 @@ from login import mostrar_login, mostrar_logout
 from eeg import visualizador_eeg
 from expediente import expediente_clinico
 from chat_ia import chat_medico_ia
+from dashboard import dashboard_general
 import firebase_admin
 from firebase_admin import credentials, firestore
 
@@ -56,6 +57,7 @@ with col2:
 st.divider()
 
 menu = st.sidebar.selectbox("Navegacion", [
+    "Dashboard",
     "Registrar sintoma",
     "Ver historial",
     "Calculadoras clinicas",
@@ -231,3 +233,5 @@ elif menu == "Expediente clinico":
     expediente_clinico(db)
 elif menu == "Chat IA Medica":
     chat_medico_ia(db)
+elif menu == "Dashboard":
+    dashboard_general(db)
