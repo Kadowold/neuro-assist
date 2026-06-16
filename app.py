@@ -17,6 +17,9 @@ from perfil import mostrar_perfil_sidebar, tutorial_interactivo
 from voz_medica import notas_por_voz
 from agenda import agenda_medica
 from predictor import predictor_riesgo
+from diagnostico import diagnostico_diferencial
+from estadisticas import estadisticas_clinica
+from monitor import monitor_criticos
 import firebase_admin
 from firebase_admin import credentials, firestore
 
@@ -102,6 +105,7 @@ st.markdown(f"""
 
 menu = st.sidebar.selectbox("Navegacion", [
     "Dashboard",
+    "Monitor criticos",
     "Agenda medica",
     "Registrar sintoma",
     "Ver historial",
@@ -109,8 +113,10 @@ menu = st.sidebar.selectbox("Navegacion", [
     "Calculadoras clinicas",
     "Herramientas pediatricas",
     "Visualizador EEG",
+    "Diagnostico diferencial IA",
     "Notas por voz",
     "Predictor de riesgo IA",
+    "Estadisticas clinica",
     "Expediente clinico",
     "Chat IA Medica",
     "Tutorial"
@@ -312,3 +318,9 @@ elif menu == "Agenda medica":
     agenda_medica(db)
 elif menu == "Predictor de riesgo IA":
     predictor_riesgo(db)
+elif menu == "Diagnostico diferencial IA":
+    diagnostico_diferencial(db)
+elif menu == "Estadisticas clinica":
+    estadisticas_clinica(db)
+elif menu == "Monitor criticos":
+    monitor_criticos(db)
