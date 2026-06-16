@@ -29,22 +29,57 @@ def mostrar_perfil_sidebar():
 
     with st.sidebar:
         st.markdown(f"""
-        <div style="
-            background: linear-gradient(135deg, #1e3a5f, #2d6a9f);
-            border-radius: 12px;
-            padding: 16px;
-            text-align: center;
-            margin-bottom: 16px;
-        ">
-            <div style="font-size: 48px">{perfil['avatar']}</div>
-            <div style="color: white; font-weight: 700; font-size: 16px; margin-top: 8px">
-                {perfil['nombre']}
-            </div>
-            <div style="color: #90caf9; font-size: 13px">{perfil['especialidad']}</div>
-            <div style="color: #64b5f6; font-size: 11px; margin-top: 4px">{perfil['cedula']}</div>
-            <div style="color: #90caf9; font-size: 11px">{perfil['hospital']}</div>
-        </div>
-        """, unsafe_allow_html=True)
+<div style="
+    background: linear-gradient(135deg, #0a1628 0%, #1a3a6e 100%);
+    border: 1px solid #c9a84c44;
+    border-radius: 14px;
+    padding: 20px;
+    text-align: center;
+    margin-bottom: 8px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+">
+    <div style="
+        font-size: 52px;
+        background: #c9a84c22;
+        border: 2px solid #c9a84c66;
+        border-radius: 50%;
+        width: 72px;
+        height: 72px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 12px;
+        box-shadow: 0 0 20px #c9a84c44;
+    ">{perfil['avatar']}</div>
+    <div style="
+        color: #f0c96e;
+        font-weight: 700;
+        font-size: 15px;
+    ">{perfil['nombre']}</div>
+    <div style="
+        color: #8ba3cc;
+        font-size: 12px;
+        margin-top: 3px;
+    ">{perfil['especialidad']}</div>
+    <div style="
+        color: #c9a84c88;
+        font-size: 11px;
+        margin-top: 2px;
+    ">{perfil['cedula']}</div>
+    <div style="
+        background: #c9a84c22;
+        border: 1px solid #c9a84c44;
+        border-radius: 6px;
+        padding: 3px 8px;
+        color: #c9a84c;
+        font-size: 10px;
+        font-weight: 600;
+        letter-spacing: 1px;
+        margin-top: 8px;
+        display: inline-block;
+    ">● EN LINEA</div>
+</div>
+""", unsafe_allow_html=True)
 
 
 def tutorial_interactivo():
