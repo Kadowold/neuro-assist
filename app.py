@@ -1,7 +1,3 @@
-import importlib
-import perfil
-importlib.reload(perfil)  # <-- Esto borra el caché de perfil.py en cada clic
-from perfil import mostrar_perfil_sidebar, tutorial_interactivo
 import streamlit as st
 import pandas as pd
 import plotly.express as px
@@ -24,10 +20,7 @@ from predictor import predictor_riesgo
 from diagnostico import diagnostico_diferencial
 from estadisticas import estadisticas_clinica
 from monitor import monitor_criticos
-from vacunas_nutricion import (
-    evaluador_nutricional_ia,
-    calculadora_vacunas,
-)
+from vacunas_nutricion import evaluador_nutricional_ia, calculadora_vacunas
 from neurodesarrollo import monitor_neurodesarrollo
 from imagenes_ia import analizador_imagenes
 from wearables import wearables_monitor
@@ -44,7 +37,6 @@ if not firebase_admin._apps:
         st.error("No se encontraron las credenciales de Firebase.")
 
 db = firestore.client()
-
 st.set_page_config(page_title="NeuroApp", page_icon="🧠", layout="centered")
 # Control de sesion
 if "autenticado" not in st.session_state:
@@ -130,7 +122,6 @@ menu = st.sidebar.selectbox("Navegacion", [
     "Diagnostico diferencial IA",
     "Notas por voz",
     "Predictor de riesgo IA",
-    "Evaluador Nutricional",
     "Estadisticas clinica",
     "Expediente clinico",
     "Chat IA Medica",
