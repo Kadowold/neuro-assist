@@ -112,7 +112,6 @@ st.markdown(f"""
 menu = st.sidebar.selectbox("Navegacion", [
     "Dashboard",
     "Monitor criticos",
-    "Wearables",
     "Agenda medica",
     "Registrar sintoma",
     "Ver historial",
@@ -131,6 +130,7 @@ menu = st.sidebar.selectbox("Navegacion", [
     "Estadisticas clinica",
     "Expediente clinico",
     "Chat IA Medica",
+    "Wearables",
     "Tutorial"
 ])
 
