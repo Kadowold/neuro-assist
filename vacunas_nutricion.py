@@ -34,7 +34,7 @@ def evaluador_nutricional_ia(db=None):
         imc = peso / (talla**2)
         st.metric(label="Índice de Masa Corporal (IMC)", value=f"{imc:.2f}")
 
-        client = openai.OpenAI(api_key=st.secrets["openai"]["api_key"])
+       client = openai.OpenAI(api_key=st.secrets["OPENAI_API_KEY"])
 
         prompt = f"""
         Actúa como un experto en pediatría y nutrición. Analiza los siguientes datos de un paciente de {edad_meses} meses de edad:
