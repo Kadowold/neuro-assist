@@ -32,8 +32,7 @@ def mostrar_perfil_sidebar():
     )
 
     with st.sidebar:
-        st.markdown(
-            f"""
+        st.markdown(f"""
 <div style="
     background: linear-gradient(135deg, #0a1628 0%, #1a3a6e 100%);
     border: 1px solid #c9a84c44;
@@ -72,6 +71,11 @@ def mostrar_perfil_sidebar():
         margin-top: 2px;
     ">{perfil['cedula']}</div>
     <div style="
+        color: #8ba3cc;
+        font-size: 11px;
+        margin-top: 2px;
+    ">🏥 {perfil['hospital']}</div>
+    <div style="
         background: #c9a84c22;
         border: 1px solid #c9a84c44;
         border-radius: 6px;
@@ -84,9 +88,7 @@ def mostrar_perfil_sidebar():
         display: inline-block;
     ">● EN LINEA</div>
 </div>
-""",
-            unsafe_allow_html=True,
-        )
+""", unsafe_allow_html=True)
 
 
 def tutorial_interactivo():
