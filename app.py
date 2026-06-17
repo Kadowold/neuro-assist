@@ -185,7 +185,7 @@ elif menu == "Ver historial":
                         datos["fecha"] = datos["fecha"].date()
                     except:
                         pass
-                # Normalizar nombre del campo duracion (con o sin acento)
+            
                 if "duración" in datos:
                     datos["duración"] = datos.pop("duración")
                 lista_registros.append(datos)
@@ -197,7 +197,7 @@ elif menu == "Ver historial":
             else:
                 st.success(f"Se encontraron {len(df)} registro(s).")
 
-                # Aseguramos que las columnas necesarias existen
+            
                 for col in ["tipo_sintoma", "intensidad", "duración", "desencadenante", "notas"]:
                     if col not in df.columns:
                         df[col] = "-"
