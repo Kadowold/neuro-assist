@@ -109,6 +109,10 @@ st.markdown(f"""
 </div>
 """, unsafe_allow_html=True)
 
+# Detectar si es movil y mostrar navegacion alternativa
+st.sidebar.markdown("### 🧠 NeuroApp")
+st.sidebar.markdown("---")
+
 menu = st.sidebar.selectbox("Navegacion", [
     "Dashboard",
     "Monitor criticos",
