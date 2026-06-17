@@ -24,6 +24,9 @@ from vacunas_nutricion import evaluador_nutricional_ia, calculadora_vacunas
 from neurodesarrollo import monitor_neurodesarrollo
 from imagenes_ia import analizador_imagenes
 from wearables import wearables_monitor
+from recetas import generador_recetas
+from interacciones import buscador_interacciones
+from sindromes_ia import reconocimiento_sindromes
 import firebase_admin
 from firebase_admin import credentials, firestore
 
@@ -118,6 +121,9 @@ menu = st.sidebar.selectbox("Navegacion", [
     "Herramientas pediatricas",
     "Neurodesarrollo bebes",
     "Analizador imagenes IA",
+    "Sindromes geneticos IA",
+    "Interacciones farmacologicas",
+    "Recetas medicas",
     "Visualizador EEG",
     "Diagnostico diferencial IA",
     "Notas por voz",
@@ -179,7 +185,7 @@ elif menu == "Ver historial":
                         datos["fecha"] = datos["fecha"].date()
                     except:
                         pass
-            
+                # Normalizar nombre del campo duracion (con o sin acento)
                 if "duración" in datos:
                     datos["duración"] = datos.pop("duración")
                 lista_registros.append(datos)
@@ -191,7 +197,7 @@ elif menu == "Ver historial":
             else:
                 st.success(f"Se encontraron {len(df)} registro(s).")
 
-            
+                # Aseguramos que las columnas necesarias existen
                 for col in ["tipo_sintoma", "intensidad", "duración", "desencadenante", "notas"]:
                     if col not in df.columns:
                         df[col] = "-"
@@ -338,3 +344,9 @@ elif menu == "Analizador imagenes IA":
     analizador_imagenes(db)
 elif menu == "Wearables":
     wearables_monitor(db)
+elif menu == "Recetas medicas":
+    generador_recetas(db)
+elif menu == "Interacciones farmacologicas":
+    buscador_interacciones(db)
+elif menu == "Sindromes geneticos IA":
+    reconocimiento_sindromes(db)
