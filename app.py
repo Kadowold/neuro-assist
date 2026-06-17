@@ -28,19 +28,24 @@ from vacunas_nutricion import (
     evaluador_nutricional_ia,
     calculadora_vacunas,
 )
-import firebase_admin
-from firebase_admin import credentials, firestore
+# Optimizacion de rendimiento
+import streamlit as st
 
-if not firebase_admin._apps:
-    try:
-        firebase_creds = dict(st.secrets["firebase"])
-        firebase_creds["private_key"] = firebase_creds["private_key"].replace("\\n", "\n")
-        cred = credentials.Certificate(firebase_creds)
-        firebase_admin.initialize_app(cred)
-    except KeyError:
-        st.error("No se encontraron las credenciales de Firebase.")
+@st.cache_resource
+def inicializar_firebase():
+    import firebase_admin
+    from firebase_admin import credentials, firestore
+    if not firebase_admin._apps:
+        try:
+            firebase_creds = dict(st.secrets["firebase"])
+            firebase_creds["private_key"] = firebase_creds["private_key"].replace("\\n", "\n")
+            cred = credentials.Certificate(firebase_creds)
+            firebase_admin.initialize_app(cred)
+        except KeyError:
+            st.error("No se encontraron las credenciales de Firebase.")
+    return firestore.client()
 
-db = firestore.client()
+db = inicializar_firebase()
 
 st.set_page_config(page_title="NeuroApp", page_icon="🧠", layout="centered")
 # Control de sesion
