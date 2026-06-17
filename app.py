@@ -130,6 +130,7 @@ menu = st.sidebar.selectbox("Navegacion", [
     "Diagnostico diferencial IA",
     "Notas por voz",
     "Predictor de riesgo IA",
+    "Evaluador Nutricional",
     "Estadisticas clinica",
     "Expediente clinico",
     "Chat IA Medica",
