@@ -6,7 +6,7 @@ def hash_password(password):
     return hashlib.sha256(password.encode()).hexdigest()
 
 USUARIOS = {
-    "Alexiis": hash_password("carlos2026"),
+    "Alexiis": hash_password("Alexis_2026"),
     "Montserrath": hash_password("Montse_23"),
 }
 
