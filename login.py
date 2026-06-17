@@ -1,7 +1,7 @@
 import streamlit as st
 import hashlib
 
-# Usuarios permitidos: {"usuario": "contrasena_hasheada"}
+# Usuarios permitidos
 def hash_password(password):
     return hashlib.sha256(password.encode()).hexdigest()
 
