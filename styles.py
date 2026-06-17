@@ -170,18 +170,19 @@ def aplicar_estilos():
     """
     css += """
     <style>
-        /* Forzar sidebar visible en movil */
         @media (max-width: 768px) {
             [data-testid="stSidebar"] {
-                width: 280px !important;
-                min-width: 280px !important;
+                transform: none !important;
+                width: 100% !important;
+                min-width: unset !important;
+                position: relative !important;
             }
-            [data-testid="collapsedControl"] {
-                display: flex !important;
-                visibility: visible !important;
+            [data-testid="stSidebarContent"] {
+                padding: 8px !important;
             }
-            section[data-testid="stSidebarContent"] {
-                display: block !important;
+            .main .block-container {
+                padding-left: 8px !important;
+                padding-right: 8px !important;
             }
         }
     </style>
