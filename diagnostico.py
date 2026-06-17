@@ -28,7 +28,7 @@ def diagnostico_diferencial(db):
         col1, col2 = st.columns(2)
         with col1:
             paciente = st.text_input("Nombre del paciente", key="dx_paciente")
-            edad = st.number_input("Edad (anos)", min_value=0, max_value=120, value=5)
+            edad = st.number_input("Edad (años)", min_value=0, max_value=120, value=5)
             sexo = st.radio("Sexo", ["Masculino", "Femenino"], horizontal=True)
         with col2:
             especialidad = st.selectbox("Enfoque clinico", [
@@ -90,7 +90,7 @@ def diagnostico_diferencial(db):
 
 Analiza el siguiente cuadro clinico y genera un diagnostico diferencial completo y estructurado:
 
-PACIENTE: {paciente} | EDAD: {edad} anos | SEXO: {sexo}
+PACIENTE: {paciente} | EDAD: {edad} años | SEXO: {sexo}
 TIEMPO DE EVOLUCION: {tiempo_evolucion}
 ESPECIALIDAD: {especialidad}
 
