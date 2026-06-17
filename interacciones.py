@@ -38,7 +38,7 @@ def buscador_interacciones(db):
     col1, col2 = st.columns(2)
     with col1:
         paciente = st.text_input("Nombre del paciente (opcional)")
-        edad = st.number_input("Edad (anos)", min_value=0, max_value=120, value=5)
+        edad = st.number_input("Edad (años)", min_value=0, max_value=120, value=5)
         peso = st.number_input("Peso (kg)", min_value=0.5, max_value=150.0, value=20.0)
     with col2:
         condiciones = st.text_area(
@@ -78,7 +78,7 @@ def buscador_interacciones(db):
 Analiza las interacciones farmacologicas entre estos medicamentos para el siguiente paciente:
 
 PACIENTE: {paciente if paciente else 'No especificado'}
-EDAD: {edad} anos | PESO: {peso} kg
+EDAD: {edad} años | PESO: {peso} kg
 CONDICIONES MEDICAS: {condiciones if condiciones else 'No especificadas'}
 
 MEDICAMENTOS A ANALIZAR:
