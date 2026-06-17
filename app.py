@@ -28,24 +28,22 @@ from vacunas_nutricion import (
     evaluador_nutricional_ia,
     calculadora_vacunas,
 )
-# Optimizacion de rendimiento
-import streamlit as st
+from neurodesarrollo import monitor_neurodesarrollo
+from imagenes_ia import analizador_imagenes
+from wearables import wearables_monitor
+import firebase_admin
+from firebase_admin import credentials, firestore
 
-@st.cache_resource
-def inicializar_firebase():
-    import firebase_admin
-    from firebase_admin import credentials, firestore
-    if not firebase_admin._apps:
-        try:
-            firebase_creds = dict(st.secrets["firebase"])
-            firebase_creds["private_key"] = firebase_creds["private_key"].replace("\\n", "\n")
-            cred = credentials.Certificate(firebase_creds)
-            firebase_admin.initialize_app(cred)
-        except KeyError:
-            st.error("No se encontraron las credenciales de Firebase.")
-    return firestore.client()
+if not firebase_admin._apps:
+    try:
+        firebase_creds = dict(st.secrets["firebase"])
+        firebase_creds["private_key"] = firebase_creds["private_key"].replace("\\n", "\n")
+        cred = credentials.Certificate(firebase_creds)
+        firebase_admin.initialize_app(cred)
+    except KeyError:
+        st.error("No se encontraron las credenciales de Firebase.")
 
-db = inicializar_firebase()
+db = firestore.client()
 
 st.set_page_config(page_title="NeuroApp", page_icon="🧠", layout="centered")
 # Control de sesion
@@ -116,16 +114,18 @@ st.markdown(f"""
 </div>
 """, unsafe_allow_html=True)
 
-menu = st.sidebar.selectbox("MENU", [
+menu = st.sidebar.selectbox("Navegacion", [
     "Dashboard",
     "Monitor criticos",
+    "Wearables",
     "Agenda medica",
     "Registrar sintoma",
-    "Evaluador Nutricional",
     "Ver historial",
     "Signos vitales",
     "Calculadoras clinicas",
     "Herramientas pediatricas",
+    "Neurodesarrollo bebes",
+    "Analizador imagenes IA",
     "Visualizador EEG",
     "Diagnostico diferencial IA",
     "Notas por voz",
@@ -340,3 +340,9 @@ elif menu == "Monitor criticos":
     monitor_criticos(db)
 elif menu == "Evaluador Nutricional":
     evaluador_nutricional_ia(db)
+elif menu == "Neurodesarrollo bebes":
+    monitor_neurodesarrollo(db)
+elif menu == "Analizador imagenes IA":
+    analizador_imagenes(db)
+elif menu == "Wearables":
+    wearables_monitor(db)
