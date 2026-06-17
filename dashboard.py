@@ -5,22 +5,22 @@ import plotly.graph_objects as go
 from plotly.subplots import make_subplots
 import datetime
 
-def obtener_todos(db, coleccion):
+@st.cache_data(ttl=300)
+def obtener_todos_cached(_db, coleccion):
     try:
-        docs = db.collection(coleccion).stream()
+        docs = _db.collection(coleccion).stream()
         registros = []
         for doc in docs:
-            datos = doc.to_dict()
-            if "fecha" in datos and datos["fecha"] is not None:
+            d = doc.to_dict()
+            if "fecha" in d and d["fecha"] is not None:
                 try:
-                    datos["fecha"] = datos["fecha"].date()
+                    d["fecha"] = d["fecha"].date()
                 except:
                     pass
-            registros.append(datos)
+            registros.append(d)
         return registros
     except:
         return []
-
 
 def dashboard_general(db):
     st.header("Dashboard General")
