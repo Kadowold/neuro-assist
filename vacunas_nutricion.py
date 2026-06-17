@@ -8,13 +8,13 @@ def evaluador_nutricional_ia(db=None):
     col1, col2, col3 = st.columns(3)
     with col1:
         edad_meses = st.number_input(
-            "Edad del paciente (en meses)", min_value=0, max_value=216, value=24
+            "Edad del paciente (en años)", min_value=0, max_value=216, value=24
         )
     with col2:
         peso = st.number_input("Peso actual (Kg)", min_value=1.0, value=12.0)
     with col3:
         talla = st.number_input(
-            "Estatura/Talla (Metros)", min_value=0.3, value=0.85
+            "Estatura/Talla (cm)", min_value=0.3, value=0.85
         )
 
     sintomas_conducta = st.multiselect(
@@ -38,7 +38,7 @@ def evaluador_nutricional_ia(db=None):
 
         prompt = f"""
         Actúa como un experto en pediatría y nutrición. Analiza los siguientes datos de un paciente de {edad_meses} meses de edad:
-        - IMC calculado: {imc:.2f} (Peso: {peso}kg, Talla: {talla}m)
+        - IMC calculado: {imc:.2f} (Peso: {peso}kg, Talla: {talla}c)
         - Conductas de alarma reportadas: {', '.join(sintomas_conducta) if sintomas_conducta else 'Ninguna'}.
         Proporciona un análisis breve, posibles percentiles estimados de riesgo y recomendaciones clínicas orientadas a la salud mental y física del menor.
         """
