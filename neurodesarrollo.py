@@ -21,7 +21,7 @@ HITOS_NEURODESARROLLO = {
         "Motor grueso": ["Sostiene cabeza firmemente", "Se apoya en antebrazos boca abajo", "Rolado parcial"],
         "Motor fino": ["Alcanza objetos voluntariamente", "Sostiene objetos brevemente"],
         "Lenguaje": ["Rie a carcajadas", "Balbucea vocales"],
-        "Social": ["Reconoce cuidadores", "Disfruta interaccion social"]
+        "Social": ["Reconoce cuidadores", "Disfruta interacción social"]
     },
     6: {
         "Motor grueso": ["Se sienta con apoyo", "Se voltea de boca arriba a boca abajo", "Apoyo en manos sentado"],
@@ -33,7 +33,7 @@ HITOS_NEURODESARROLLO = {
         "Motor grueso": ["Se sienta sin apoyo estable", "Gatea o arrastra", "Se pone de pie con apoyo"],
         "Motor fino": ["Pinza inferior", "Golpea objetos entre si", "Indice senalador emergente"],
         "Lenguaje": ["Mama papa con significado", "Entiende NO", "Imita sonidos"],
-        "Social": ["Ansiedad ante extranios", "Juego de escondidas", "Senala con el dedo"]
+        "Social": ["Ansiedad ante extranios", "Juego de escondidas", "Señala con el dedo"]
     },
     12: {
         "Motor grueso": ["Camina con apoyo o solo", "Se pone de pie solo", "Sube escalones gateando"],
@@ -44,14 +44,14 @@ HITOS_NEURODESARROLLO = {
     15: {
         "Motor grueso": ["Camina solo bien", "Sube escaleras con apoyo", "Se agacha y se levanta"],
         "Motor fino": ["Apila 2 cubos", "Mete y saca objetos", "Usa cuchara torpemente"],
-        "Lenguaje": ["5 a 10 palabras", "Jerga con entonacion", "Senala partes del cuerpo"],
+        "Lenguaje": ["5 a 10 palabras", "Jerga con entonación", "Señala partes del cuerpo"],
         "Social": ["Juego simbolico simple", "Muestra afecto", "Imita tareas del hogar"]
     },
     18: {
         "Motor grueso": ["Corre torpemente", "Sube escaleras con apoyo alternando", "Patea pelota"],
         "Motor fino": ["Apila 3 a 4 cubos", "Garabatea espontaneamente", "Pasa paginas"],
-        "Lenguaje": ["10 a 20 palabras", "Senala imagenes en libros", "Dice NO con intencion"],
-        "Social": ["Juego simbolico", "Imita actividades", "Busca aprobacion adultos"]
+        "Lenguaje": ["10 a 20 palabras", "Señala imagenes en libros", "Dice NO con intención"],
+        "Social": ["Juego simbolico", "Imita actividades", "Busca aprobación adultos"]
     },
     24: {
         "Motor grueso": ["Corre bien", "Sube y baja escaleras con apoyo", "Salta en dos pies"],
@@ -61,7 +61,7 @@ HITOS_NEURODESARROLLO = {
     }
 }
 
-SENALES_ALARMA_ABSOLUTAS = [
+SEÑALES_ALARMA_ABSOLUTAS = [
     "No fija la mirada a los 2 meses",
     "No sonrie a los 3 meses",
     "No sostiene la cabeza a los 4 meses",
@@ -70,9 +70,9 @@ SENALES_ALARMA_ABSOLUTAS = [
     "No dice ninguna palabra a los 12 meses",
     "No camina a los 18 meses",
     "No dice frases de 2 palabras a los 24 meses",
-    "Perdida de habilidades previamente adquiridas (REGRESION)",
+    "Perdida de habilidades previamente adquiridas (REGRESIÓN)",
     "No responde a su nombre a los 12 meses",
-    "No senala con el dedo a los 14 meses",
+    "No señala con el dedo a los 14 meses",
     "No hace juego simbolico a los 18 meses"
 ]
 
@@ -103,7 +103,7 @@ Evalua Motor grueso, Motor fino, Lenguaje y Social.
 Describe tendencias, retrasos o regresiones encontradas.
 
 ### Nivel de riesgo
-NORMAL / RETRASO LEVE / RETRASO MODERADO / REGRESION DETECTADA / RIESGO ALTO
+NORMAL / RETRASO LEVE / RETRASO MODERADO / REGRESIÓN DETECTADA / RIESGO ALTO
 
 ### Alertas especificas
 Lista de hallazgos que requieren atención.
@@ -204,16 +204,16 @@ def monitor_neurodesarrollo(db):
         st.subheader("Señales de alarma absoluta")
         st.markdown("*Marca si alguna aplica al paciente*")
         alarmas_presentes = []
-        for senal in SENALES_ALARMA_ABSOLUTAS:
+        for senal in SEÑALES_ALARMA_ABSOLUTAS:
             if st.checkbox(senal, key=f"alarma_{senal}"):
                 alarmas_presentes.append(senal)
 
         notas_clinicas = st.text_area(
             "Notas clinicas adicionales",
-            placeholder="Observaciones del medico durante la evaluacion..."
+            placeholder="Observaciones del medico durante la evaluación..."
         )
 
-        if st.button("Guardar evaluacion y analizar con IA", use_container_width=True):
+        if st.button("Guardar evaluación y analizar con IA", use_container_width=True):
             if paciente == "":
                 st.warning("Ingresa el nombre del bebe.")
             else:
