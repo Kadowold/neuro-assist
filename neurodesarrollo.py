@@ -84,7 +84,7 @@ def analizar_regresion_ia(paciente, historial_hitos, edad_actual):
 
         prompt = f"""Eres un neuropediatra experto en neurodesarrollo infantil.
 
-Analiza el siguiente historial de hitos del neurodesarrollo del paciente y detecta patrones de regresion, retraso o riesgo:
+Analiza el siguiente historial de hitos del neurodesarrollo del paciente y detecta patrones de regresión, retraso o riesgo:
 
 PACIENTE: {paciente}
 EDAD ACTUAL: {edad_actual} meses
@@ -106,7 +106,7 @@ Describe tendencias, retrasos o regresiones encontradas.
 NORMAL / RETRASO LEVE / RETRASO MODERADO / REGRESION DETECTADA / RIESGO ALTO
 
 ### Alertas especificas
-Lista de hallazgos que requieren atencion.
+Lista de hallazgos que requieren atención.
 
 ### Diagnosticos a considerar
 Si hay senales de alarma, menciona condiciones a descartar como:
@@ -121,7 +121,7 @@ Si hay senales de alarma, menciona condiciones a descartar como:
 Examenes especificos segun el perfil de riesgo.
 
 ### Plan de seguimiento
-Frecuencia de evaluacion y especialistas a consultar.
+Frecuencia de evaluación y especialistas a consultar.
 
 Se preciso, basate en criterios DSM-5, ICD-11 y guias de la AAP."""
 
@@ -146,7 +146,7 @@ def monitor_neurodesarrollo(db):
         margin-bottom: 16px;
     ">
         <div style="color: #f0c96e; font-weight: 600; font-size: 15px">
-            🧠 Monitor Inteligente de Hitos y Regresion Neurologica
+            🧠 Monitor Inteligente de Hitos y Regresión Neurologica
         </div>
         <div style="color: #8ba3cc; font-size: 13px; margin-top: 4px">
             Vigilancia predictiva del neurodesarrollo para bebes de 0 a 24 meses.
@@ -157,9 +157,9 @@ def monitor_neurodesarrollo(db):
     st.divider()
 
     tab1, tab2, tab3 = st.tabs([
-        "📝 Nueva evaluacion",
+        "📝 Nueva evaluación",
         "📊 Tablero predictivo",
-        "🚨 Alertas de regresion"
+        "🚨 Alertas de regresión"
     ])
 
     with tab1:
@@ -201,7 +201,7 @@ def monitor_neurodesarrollo(db):
                     hitos_cumplidos += 1
 
         st.divider()
-        st.subheader("Senales de alarma absoluta")
+        st.subheader("Señales de alarma absoluta")
         st.markdown("*Marca si alguna aplica al paciente*")
         alarmas_presentes = []
         for senal in SENALES_ALARMA_ABSOLUTAS:
@@ -240,7 +240,7 @@ def monitor_neurodesarrollo(db):
 
                 try:
                     db.collection("neurodesarrollo").add(evaluacion)
-                    st.success("Evaluacion guardada.")
+                    st.success("Evaluación guardada.")
                 except Exception as e:
                     st.error(f"Error al guardar: {e}")
 
@@ -251,7 +251,7 @@ def monitor_neurodesarrollo(db):
                 col3.metric("Alarmas", len(alarmas_presentes))
 
                 if alarmas_presentes or porcentaje < 60:
-                    st.error("🚨 ALERTA DE REGRESION O RETRASO DETECTADA")
+                    st.error("🚨 ALERTA DE REGRESIÓN O RETRASO DETECTADA")
 
                 with st.spinner("Analizando neurodesarrollo con IA..."):
                     try:
@@ -268,7 +268,7 @@ def monitor_neurodesarrollo(db):
                             )
                         analisis = analizar_regresion_ia(
                             paciente,
-                            "\n".join(historial) if historial else "Primera evaluacion",
+                            "\n".join(historial) if historial else "Primera evaluación",
                             edad_meses
                         )
                         st.markdown(analisis)
@@ -374,7 +374,7 @@ def monitor_neurodesarrollo(db):
                 st.error(f"Error: {e}")
 
     with tab3:
-        st.subheader("Alertas de regresion neurologica")
+        st.subheader("Alertas de regresión neurologica")
         try:
             docs = db.collection("neurodesarrollo").stream()
             alertas = []
@@ -389,9 +389,9 @@ def monitor_neurodesarrollo(db):
                     alertas.append(d)
 
             if not alertas:
-                st.success("Sin alertas de regresion activas.")
+                st.success("Sin alertas de regresión activas.")
             else:
-                st.error(f"🚨 {len(alertas)} alerta(s) de regresion detectada(s)")
+                st.error(f"🚨 {len(alertas)} alerta(s) de regresión detectada(s)")
                 for alerta in alertas:
                     st.markdown(f"""
                     <div style="
