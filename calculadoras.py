@@ -31,7 +31,7 @@ def escala_glasgow():
         "5 - Localiza el dolor",
         "4 - Retira al dolor",
         "3 - Flexion anormal",
-        "2 - Extension anormal",
+        "2 - Extensión anormal",
         "1 - Sin respuesta"
     ], key="glasgow_motora")
 
@@ -52,7 +52,7 @@ def escala_glasgow():
         if total >= 13:
             st.success(f"Puntaje {total}/15 — TCE LEVE: Paciente consciente. Monitoreo rutinario.")
         elif total >= 9:
-            st.warning(f"Puntaje {total}/15 — TCE MODERADO: Requiere observacion hospitalaria.")
+            st.warning(f"Puntaje {total}/15 — TCE MODERADO: Requiere observación hospitalaria.")
         else:
             st.error(f"Puntaje {total}/15 — TCE GRAVE: Riesgo vital. Manejo en UCI inmediato.")
 
@@ -83,7 +83,7 @@ def escala_nihss():
         "8. Sensibilidad": ["0 - Normal", "1 - Perdida leve", "2 - Perdida severa"],
         "9. Lenguaje": ["0 - Normal", "1 - Afasia leve", "2 - Afasia severa", "3 - Mudo"],
         "10. Disartria": ["0 - Normal", "1 - Leve", "2 - Severa"],
-        "11. Extincion e inatension": ["0 - Normal", "1 - Inatension en una modalidad", "2 - Hemiinatension profunda"]
+        "11. Extinción e inatensión": ["0 - Normal", "1 - Inatensión en una modalidad", "2 - Hemiinatensión profunda"]
     }
 
     puntajes = []
@@ -120,8 +120,8 @@ def escala_mini_mental():
     """)
     st.divider()
 
-    st.subheader("1. Orientacion temporal (5 puntos)")
-    temporal = st.slider("Cuantas preguntas respondio correctamente? (año, mes, dia, hora, estacion)", 0, 5, 0)
+    st.subheader("1. Orientación temporal (5 puntos)")
+    temporal = st.slider("Cuantas preguntas respondio correctamente? (año, mes, dia, hora, estación)", 0, 5, 0)
 
     st.subheader("2. Orientacion espacial (5 puntos)")
     espacial = st.slider("Cuantas preguntas respondio correctamente? (pais, ciudad, hospital, piso, servicio)", 0, 5, 0)
@@ -130,7 +130,7 @@ def escala_mini_mental():
     st.markdown("*Decir 3 palabras (pelota, bandera, arbol) y pedir que las repita*")
     registro = st.slider("Cuantas palabras repitio correctamente?", 0, 3, 0)
 
-    st.subheader("4. Atencion y calculo (5 puntos)")
+    st.subheader("4. Atención y calculo (5 puntos)")
     st.markdown("*Restar 7 desde 100 cinco veces consecutivas (93, 86, 79, 72, 65)*")
     calculo = st.slider("Cuantas sustracciones correctas?", 0, 5, 0)
 
@@ -142,12 +142,12 @@ def escala_mini_mental():
     st.markdown("*Mostrar lapiz y reloj*")
     nombrar = st.slider("Cuantos objetos nombro correctamente?", 0, 2, 0)
 
-    st.subheader("7. Repeticion (1 punto)")
+    st.subheader("7. Repetición (1 punto)")
     st.markdown('*Repetir: "ni si, ni no, ni pero"*')
     repeticion = st.radio("Repitio correctamente?", ["1 - Si", "0 - No"], key="mmse_rep")
     p_repeticion = int(repeticion[0])
 
-    st.subheader("8. Comprension (3 puntos)")
+    st.subheader("8. Comprensión (3 puntos)")
     st.markdown("*Tomar papel con mano derecha, doblarlo, ponerlo en el suelo*")
     comprension = st.slider("Cuantos pasos realizo correctamente?", 0, 3, 0)
 
@@ -157,7 +157,7 @@ def escala_mini_mental():
     p_lectura = int(lectura[0])
 
     st.subheader("10. Escritura (1 punto)")
-    st.markdown("*Pedir que escriba una oracion completa*")
+    st.markdown("*Pedir que escriba una oración completa*")
     escritura = st.radio("Escribio una oracion con sentido?", ["1 - Si", "0 - No"], key="mmse_esc")
     p_escritura = int(escritura[0])
 
@@ -177,9 +177,9 @@ def escala_mini_mental():
         if total >= 27:
             st.success(f"Puntaje {total}/30 — NORMAL: Sin deterioro cognitivo aparente.")
         elif total >= 21:
-            st.warning(f"Puntaje {total}/30 — DETERIORO LEVE: Seguimiento y reevaluacion recomendados.")
+            st.warning(f"Puntaje {total}/30 — DETERIORO LEVE: Seguimiento y reevaluación recomendados.")
         elif total >= 11:
-            st.warning(f"Puntaje {total}/30 — DETERIORO MODERADO: Evaluacion especializada necesaria.")
+            st.warning(f"Puntaje {total}/30 — DETERIORO MODERADO: Evaluación especializada necesaria.")
         else:
             st.error(f"Puntaje {total}/30 — DETERIORO GRAVE: Probable demencia avanzada.")
 
@@ -213,7 +213,7 @@ def escala_rankin():
         st.divider()
 
         if puntaje == 0:
-            st.success("Puntaje 0 — RECUPERACION COMPLETA: Sin sintomas.")
+            st.success("Puntaje 0 — RECUPERACIÓN COMPLETA: Sin sintomas.")
         elif puntaje <= 2:
             st.success(f"Puntaje {puntaje} — INDEPENDIENTE: Buen pronostico funcional.")
         elif puntaje <= 4:
