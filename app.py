@@ -109,7 +109,7 @@ st.markdown(f"""
 </div>
 """, unsafe_allow_html=True)
 
-menu = st.sidebar.selectbox("Navegacion", [
+menu = st.sidebar.selectbox("MENU", [
     "Dashboard",
     "Monitor criticos",
     "Agenda medica",
