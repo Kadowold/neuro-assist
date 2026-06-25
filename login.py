@@ -7,7 +7,7 @@ def hash_password(password):
 
 USUARIOS = {
     "Alexiis": hash_password("Alexis_2026"),
-    "Montserrath": hash_password("Montse_23"),
+    "Montserrath": hash_password("Montse_26"),
 }
 
 def mostrar_login():
