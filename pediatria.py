@@ -157,7 +157,7 @@ def desarrollo_infantil(db):
     st.divider()
 
     paciente = st.text_input("Nombre del paciente", key="des_paciente")
-    edad = st.selectbox("Edad del nino", [
+    edad = st.selectbox("Edad del niño", [
         "2 meses", "4 meses", "6 meses", "9 meses",
         "12 meses", "18 meses", "24 meses", "3 años", "4 años", "5 años"
     ])
