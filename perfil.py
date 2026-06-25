@@ -99,7 +99,7 @@ def tutorial_interactivo():
     pasos = {
         "Inicio rapido": {
             "icono": "🚀",
-            "descripción": "Bienvenido a NeuroApp. Esta app te permite gestionar pacientes, calcular escalas clinicas, analizar EEGs y consultar con IA medica.",
+            "descripción": "Bienvenido/a a NeuroApp. Esta app te permite gestionar pacientes, calcular escalas clinicas, analizar EEGs y consultar con IA medica.",
             "pasos": [
                 "Inicia sesion con tu usuario y contraseña",
                 "Usa el menu lateral izquierdo para navegar entre modulos",
@@ -136,8 +136,8 @@ def tutorial_interactivo():
             "pasos": [
                 "Calculadora de dosis: ingresa el peso y selecciona el medicamento",
                 "Curvas de crecimiento: compara con tablas OMS por edad y sexo",
-                "Desarrollo infantil: evalua hitos del desarrollo por edad",
-                "Triaje pediatrico: determina la urgencia segun signos vitales y alarmas",
+                "Desarrollo infantil: evalúa hitos del desarrollo por edad",
+                "Triaje pediatrico: determina la urgencia según signos vitales y alarmas",
             ],
         },
         "Signos vitales": {
