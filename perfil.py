@@ -99,9 +99,9 @@ def tutorial_interactivo():
     pasos = {
         "Inicio rapido": {
             "icono": "🚀",
-            "descripcion": "Bienvenido a NeuroApp. Esta app te permite gestionar pacientes, calcular escalas clinicas, analizar EEGs y consultar con IA medica.",
+            "descripción": "Bienvenido a NeuroApp. Esta app te permite gestionar pacientes, calcular escalas clinicas, analizar EEGs y consultar con IA medica.",
             "pasos": [
-                "Inicia sesion con tu usuario y contrasena",
+                "Inicia sesion con tu usuario y contraseña",
                 "Usa el menu lateral izquierdo para navegar entre modulos",
                 "El boton del sol/luna en la esquina superior cambia entre modo claro y oscuro",
                 "Todos los datos se guardan automaticamente en la nube",
@@ -109,7 +109,7 @@ def tutorial_interactivo():
         },
         "Registrar sintomas": {
             "icono": "📝",
-            "descripcion": "Registra y monitorea los sintomas neurologicos de tus pacientes.",
+            "descripción": "Registra y monitorea los sintomas neurologicos de tus pacientes.",
             "pasos": [
                 "Ve a 'Registrar sintoma' en el menu",
                 "Escribe el nombre exacto del paciente",
@@ -120,7 +120,7 @@ def tutorial_interactivo():
         },
         "Calculadoras clinicas": {
             "icono": "📊",
-            "descripcion": "4 escalas neurologicas profesionales con interpretacion automatica.",
+            "descripción": "4 escalas neurologicas profesionales con interpretacion automatica.",
             "pasos": [
                 "Ve a 'Calculadoras clinicas' en el menu",
                 "Selecciona la escala en el menu lateral: Glasgow, NIHSS, MMSE o Rankin",
@@ -132,7 +132,7 @@ def tutorial_interactivo():
         },
         "Herramientas pediatricas": {
             "icono": "👶",
-            "descripcion": "4 herramientas especializadas para pediatria.",
+            "descripción": "4 herramientas especializadas para pediatria.",
             "pasos": [
                 "Calculadora de dosis: ingresa el peso y selecciona el medicamento",
                 "Curvas de crecimiento: compara con tablas OMS por edad y sexo",
@@ -142,7 +142,7 @@ def tutorial_interactivo():
         },
         "Signos vitales": {
             "icono": "💓",
-            "descripcion": "Semaforo visual de signos vitales por edad.",
+            "descripción": "Semaforo visual de signos vitales por edad.",
             "pasos": [
                 "Ve a 'Signos vitales' en el menu",
                 "Selecciona la edad del paciente en meses o anos",
@@ -153,7 +153,7 @@ def tutorial_interactivo():
         },
         "Visualizador EEG": {
             "icono": "🔬",
-            "descripcion": "Analiza electroencefalogramas con inteligencia artificial.",
+            "descripción": "Analiza electroencefalogramas con inteligencia artificial.",
             "pasos": [
                 "Ve a 'Visualizador EEG' en el menu",
                 "Modo demo: selecciona un tipo de EEG simulado para practicar",
@@ -165,13 +165,13 @@ def tutorial_interactivo():
         },
         "Expediente clinico": {
             "icono": "📋",
-            "descripcion": "Historial completo unificado de cada paciente.",
+            "descripción": "Historial completo unificado de cada paciente.",
             "pasos": [
                 "Ve a 'Expediente clinico' en el menu",
                 "Escribe el nombre exacto del paciente y presiona 'Cargar expediente'",
-                "Navega por las pestanas: Sintomas, Calculadoras, Pediatria, EEG",
-                "En la pestana 'Exportar PDF' genera un reporte completo profesional",
-                "El PDF incluye todos los registros organizados por seccion",
+                "Navega por las pestañas: Sintomas, Calculadoras, Pediatria, EEG",
+                "En la pestaña 'Exportar PDF' genera un reporte completo profesional",
+                "El PDF incluye todos los registros organizados por sección",
             ],
         },
         "Chat IA Medica": {
@@ -181,14 +181,14 @@ def tutorial_interactivo():
                 "Ve a 'Chat IA Medica' en el menu",
                 "Escribe tu consulta medica en el campo de texto inferior",
                 "Usa las preguntas rapidas del panel lateral para consultas frecuentes",
-                "La IA responde con informacion basada en evidencia medica",
-                "Presiona 'Limpiar conversacion' para iniciar una nueva consulta",
+                "La IA responde con información basada en evidencia medica",
+                "Presiona 'Limpiar conversación' para iniciar una nueva consulta",
                 "Nota: requiere creditos activos en la cuenta de Anthropic",
             ],
         },
         "Dashboard": {
             "icono": "📈",
-            "descripcion": "Estadisticas globales de todos tus pacientes.",
+            "descripción": "Estadisticas globales de todos tus pacientes.",
             "pasos": [
                 "Ve a 'Dashboard' en el menu",
                 "Ve estadisticas generales: total pacientes, sintomas, calculadoras",
@@ -198,25 +198,25 @@ def tutorial_interactivo():
         },
         "Agenda medica": {
             "icono": "📅",
-            "descripcion": "Gestiona citas y seguimientos de tus pacientes con un sistema completo de agenda.",
+            "descripción": "Gestiona citas y seguimientos de tus pacientes con un sistema completo de agenda.",
             "pasos": [
                 "Ve a 'Agenda medica' en el menu",
-                "Pestana 'Nueva cita': ingresa nombre del paciente, fecha, hora y tipo de cita",
+                "Pestaña 'Nueva cita': ingresa nombre del paciente, fecha, hora y tipo de cita",
                 "Selecciona la prioridad: Normal, Alta o Urgente",
                 "Escribe el motivo de la cita y notas adicionales",
                 "Presiona 'Guardar cita' — se guarda en Firebase automaticamente",
-                "Pestana 'Ver agenda': filtra citas por rango de fechas",
+                "Pestaña 'Ver agenda': filtra citas por rango de fechas",
                 "Puedes marcar citas como completadas, cancelarlas o eliminarlas",
-                "Pestana 'Proximas citas': ve rapidamente las citas de hoy y manana",
+                "Pestaña 'Proximas citas': ve rapidamente las citas de hoy y mañana",
             ],
         },
         "Notas por voz": {
             "icono": "🎙️",
-            "descripcion": "Dicta tus notas medicas con voz y la IA las transcribe y redacta profesionalmente.",
+            "descripción": "Dicta tus notas medicas con voz y la IA las transcribe y redacta profesionalmente.",
             "pasos": [
                 "Ve a 'Notas por voz' en el menu",
                 "Ingresa el nombre del paciente",
-                "Selecciona el tipo de nota: Evolucion, Historia clinica, Urgencias, Resumen",
+                "Selecciona el tipo de nota: Evolución, Historia clinica, Urgencias, Resumen",
                 "Opcion 1 - Audio: graba desde tu celular con la app de grabadora de voz",
                 "Sube el archivo de audio (WAV, MP3, M4A, OGG)",
                 "Presiona 'Transcribir audio' — Whisper AI transcribe automaticamente",
@@ -224,12 +224,12 @@ def tutorial_interactivo():
                 "Presiona 'Mejorar con IA' — Claude redacta la nota profesionalmente",
                 "Opcion 2 - Texto: escribe directamente y presiona 'Mejorar texto con IA'",
                 "Guarda la nota en Firebase o descargala en PDF",
-                "Pestana 'Notas guardadas': busca notas anteriores por paciente",
+                "Pestaña 'Notas guardadas': busca notas anteriores por paciente",
             ],
         },
         "Predictor de riesgo IA": {
             "icono": "🔍",
-            "descripcion": "Analiza todos los datos del paciente con IA y predice riesgos neurologicos futuros.",
+            "descripción": "Analiza todos los datos del paciente con IA y predice riesgos neurologicos futuros.",
             "pasos": [
                 "Ve a 'Predictor de riesgo IA' en el menu",
                 "Escribe el nombre exacto del paciente como esta registrado en el sistema",
@@ -238,7 +238,7 @@ def tutorial_interactivo():
                 "La IA recopila TODOS los datos del paciente en Firebase",
                 "Genera un reporte con 9 secciones: riesgos, patrones, predicciones, recomendaciones",
                 "Guarda el reporte en Firebase o descargalo en PDF",
-                "Entre mas datos tenga el paciente, mas precisa sera la prediccion",
+                "Entre mas datos tenga el paciente, mas precisa sera la predicción",
             ],
         },  
         "Monitor criticos": {
@@ -247,7 +247,7 @@ def tutorial_interactivo():
             "pasos": [
                 "Ve a 'Monitor criticos' en el menu — aparece segundo en la lista por su importancia",
                 "El monitor revisa automaticamente: signos vitales, triaje, EEG y escalas clinicas",
-                "Alertas ROJAS: pacientes en estado critico que requieren atencion inmediata",
+                "Alertas ROJAS: pacientes en estado critico que requieren atención inmediata",
                 "Alertas AMARILLAS: pacientes con parametros fuera de rango que requieren vigilancia",
                 "Si no hay alertas veras una pantalla verde confirmando que todo esta normal",
                 "Presiona 'Actualizar monitor' para refrescar los datos en tiempo real",
@@ -256,7 +256,7 @@ def tutorial_interactivo():
         },
         "Diagnostico diferencial IA": {
             "icono": "🔍",
-            "descripcion": "Describe los sintomas del paciente y la IA genera un diagnostico diferencial completo con probabilidades.",
+            "descripción": "Describe los sintomas del paciente y la IA genera un diagnostico diferencial completo con probabilidades.",
             "pasos": [
                 "Ve a 'Diagnostico diferencial IA' en el menu",
                 "Ingresa nombre, edad, sexo y enfoque clinico del paciente",
@@ -272,14 +272,14 @@ def tutorial_interactivo():
         },
         "Estadisticas clinica": {
             "icono": "📊",
-            "descripcion": "Analiza tendencias historicas y genera proyecciones predictivas de tu clinica con IA.",
+            "descripción": "Analiza tendencias historicas y genera proyecciones predictivas de tu clinica con IA.",
             "pasos": [
                 "Ve a 'Estadisticas clinica' en el menu",
                 "Pestana 'Tendencias': graficas de sintomas por mes, frecuencia y intensidad promedio",
                 "Pestana 'Predicciones': presiona 'Generar proyecciones con IA' para proyecciones del proximo mes",
                 "La IA analiza patrones estacionales y proyecta carga de pacientes futura",
                 "Pestana 'Carga clinica': distribucion de urgencias, tipos de cita y total de consultas",
-                "Pestana 'Farmacologia': medicamentos mas usados y distribucion de peso de pacientes",
+                "Pestana 'Farmacologia': medicamentos mas usados y distribución de peso de pacientes",
                 "Entre mas datos esten registrados en la app, mas precisas seran las proyecciones",
                 "Usa las proyecciones para planificar insumos y carga de trabajo",
             ],
@@ -294,7 +294,7 @@ def tutorial_interactivo():
     st.divider()
 
     st.markdown(f"## {modulo['icono']} {modulo_sel}")
-    st.info(modulo["descripcion"])
+    st.info(modulo["descripción"])
 
     st.subheader("Pasos:")
     for i, paso in enumerate(modulo["pasos"], 1):
