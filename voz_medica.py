@@ -18,7 +18,7 @@ def transcribir_audio(archivo_audio):
                 model="whisper-1",
                 file=f,
                 language="es",
-                prompt="Transcripcion medica en español. Terminos medicos, neurologicos y pediatricos."
+                prompt="Transcripción medica en español. Terminos medicos, neurologicos y pediatricos."
             )
 
         os.unlink(tmp_path)
@@ -35,25 +35,25 @@ def mejorar_nota_con_ia(texto_crudo, tipo_nota):
         cliente = anthropic.Anthropic(api_key=api_key)
 
         prompts = {
-            "Nota de evolucion": f"""Eres un medico especialista. Toma este texto dictado y redactalo como una nota de evolucion medica profesional y estructurada en español. 
+            "Nota de evolucion": f"""Eres un medico especialista. Toma este texto dictado y redactalo como una nota de evolución medica profesional y estructurada en español. 
             Usa el formato SOAP (Subjetivo, Objetivo, Analisis, Plan).
             Texto dictado: {texto_crudo}""",
 
             "Historia clinica": f"""Eres un medico especialista. Toma este texto dictado y redactalo como una historia clinica completa y profesional en español.
-            Incluye secciones: Motivo de consulta, Antecedentes, Enfermedad actual, Exploracion fisica, Diagnostico, Plan.
+            Incluye secciones: Motivo de consulta, Antecedentes, Enfermedad actual, Exploración fisica, Diagnostico, Plan.
             Texto dictado: {texto_crudo}""",
 
             "Nota de urgencias": f"""Eres un medico de urgencias. Toma este texto dictado y redactalo como una nota de urgencias medica profesional en español.
-            Incluye: Motivo, Signos vitales, Exploracion, Diagnostico presuntivo, Manejo inicial.
+            Incluye: Motivo, Signos vitales, Exploración, Diagnostico presuntivo, Manejo inicial.
             Texto dictado: {texto_crudo}""",
 
             "Resumen de consulta": f"""Eres un medico especialista. Toma este texto dictado y redactalo como un resumen de consulta medica claro y profesional en español.
             Texto dictado: {texto_crudo}""",
 
-            "Solo transcripcion": texto_crudo
+            "Solo transcripción": texto_crudo
         }
 
-        if tipo_nota == "Solo transcripcion":
+        if tipo_nota == "Solo transcripción":
             return texto_crudo
 
         respuesta = cliente.messages.create(
@@ -80,11 +80,11 @@ def notas_por_voz(db):
             paciente = st.text_input("Nombre del paciente", key="voz_paciente")
         with col2:
             tipo_nota = st.selectbox("Tipo de nota", [
-                "Nota de evolucion",
+                "Nota de evolución",
                 "Historia clinica",
                 "Nota de urgencias",
                 "Resumen de consulta",
-                "Solo transcripcion"
+                "Solo transcripción"
             ])
 
         st.divider()
@@ -142,10 +142,10 @@ def notas_por_voz(db):
 
             if "transcripcion_actual" in st.session_state:
                 st.divider()
-                st.subheader("Transcripcion")
+                st.subheader("Transcripción")
                 transcripcion_editada = st.text_area(
-                    "Puedes editar la transcripcion antes de mejorarla:",
-                    value=st.session_state.transcripcion_actual,
+                    "Puedes editar la transcripción antes de mejorarla:",
+                    value=st.session_state.transcripción_actual,
                     height=150,
                     key="trans_edit"
                 )
@@ -234,7 +234,7 @@ def notas_por_voz(db):
             texto_manual = st.text_area(
                 "Escribe o pega el texto de tu nota aqui:",
                 height=150,
-                placeholder="Paciente de 5 anos con fiebre de 38.5, sin signos meningeos..."
+                placeholder="Paciente de 5 años con fiebre de 38.5, sin signos meningeos..."
             )
 
             if texto_manual and st.button("✨ Mejorar texto con IA", use_container_width=True):
