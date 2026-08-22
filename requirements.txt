@@ -49,3 +49,4 @@ websockets==16.0
 firebase-admin
 anthropic
 openai
+bcrypt
