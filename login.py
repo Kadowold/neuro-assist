@@ -1,17 +1,44 @@
 import streamlit as st
-import hashlib
+import bcrypt
+from datetime import datetime
 
-# Usuarios permitidos
+
+# ---------- Utilidades de contraseña ----------
+
 def hash_password(password):
-    return hashlib.sha256(password.encode()).hexdigest()
+    return bcrypt.hashpw(password.encode(), bcrypt.gensalt()).decode()
 
-USUARIOS = {
-    "Alexiis": hash_password("Alexis_2026"),
-    "Montserrath": hash_password("Montse_26"),
-}
 
-def mostrar_login():
-    # Modo oscuro/claro
+def verificar_password(password, password_hash):
+    try:
+        return bcrypt.checkpw(password.encode(), password_hash.encode())
+    except Exception:
+        return False
+
+
+# ---------- Acceso a Firestore ----------
+
+def obtener_usuario(db, usuario):
+    usuario_id = usuario.strip().lower()
+    doc = db.collection("usuarios").document(usuario_id).get()
+    if doc.exists:
+        return doc.to_dict()
+    return None
+
+
+def crear_usuario(db, usuario, password, nombre_completo=""):
+    usuario_id = usuario.strip().lower()
+    db.collection("usuarios").document(usuario_id).set({
+        "usuario": usuario.strip(),
+        "password_hash": hash_password(password),
+        "nombre_completo": nombre_completo.strip(),
+        "creado_el": datetime.now(),
+    })
+
+
+# ---------- UI ----------
+
+def mostrar_login(db):
     if "tema" not in st.session_state:
         st.session_state.tema = "oscuro"
 
@@ -21,7 +48,6 @@ def mostrar_login():
             st.session_state.tema = "claro" if st.session_state.tema == "oscuro" else "oscuro"
             st.rerun()
 
-    # Colores segun tema
     if st.session_state.tema == "oscuro":
         bg = "#0f1117"
         card = "#1a1f2e"
@@ -48,7 +74,7 @@ def mostrar_login():
             border-radius: 16px;
             padding: 40px;
             max-width: 420px;
-            margin: 60px auto;
+            margin: 40px auto 20px auto;
             box-shadow: 0 8px 32px rgba(0,0,0,0.2);
         }}
         .login-title {{
@@ -62,7 +88,7 @@ def mostrar_login():
             color: {subtexto};
             font-size: 14px;
             text-align: center;
-            margin-bottom: 32px;
+            margin-bottom: 8px;
         }}
         .stTextInput > div > div > input {{
             background-color: {bg};
@@ -97,18 +123,47 @@ def mostrar_login():
     </div>
     """, unsafe_allow_html=True)
 
-    with st.form("login_form"):
-        usuario = st.text_input("Usuario", placeholder="Ingresa tu usuario")
-        password = st.text_input("Contraseña", type="password", placeholder="Ingresa tu contraseña")
-        submitted = st.form_submit_button("Iniciar sesion")
+    tab_login, tab_registro = st.tabs(["Iniciar sesion", "Crear cuenta"])
 
-        if submitted:
-            if usuario in USUARIOS and USUARIOS[usuario] == hash_password(password):
-                st.session_state.autenticado = True
-                st.session_state.usuario = usuario
-                st.rerun()
-            else:
-                st.error("Usuario o contraseña incorrectos.")
+    with tab_login:
+        with st.form("login_form"):
+            usuario = st.text_input("Usuario", placeholder="Ingresa tu usuario")
+            password = st.text_input("Contrasena", type="password", placeholder="Ingresa tu contrasena")
+            submitted = st.form_submit_button("Iniciar sesion")
+
+            if submitted:
+                if not usuario or not password:
+                    st.error("Completa usuario y contrasena.")
+                else:
+                    datos = obtener_usuario(db, usuario)
+                    if datos and verificar_password(password, datos["password_hash"]):
+                        st.session_state.autenticado = True
+                        st.session_state.usuario = datos.get("usuario", usuario)
+                        st.rerun()
+                    else:
+                        st.error("Usuario o contrasena incorrectos.")
+
+    with tab_registro:
+        with st.form("registro_form"):
+            nuevo_usuario = st.text_input("Elige un usuario", placeholder="Minimo 3 caracteres")
+            nombre_completo = st.text_input("Nombre completo (opcional)")
+            nueva_password = st.text_input("Contrasena", type="password", placeholder="Minimo 6 caracteres")
+            confirmar_password = st.text_input("Confirma tu contrasena", type="password")
+            submitted_reg = st.form_submit_button("Crear cuenta")
+
+            if submitted_reg:
+                if len(nuevo_usuario.strip()) < 3:
+                    st.error("El usuario debe tener al menos 3 caracteres.")
+                elif len(nueva_password) < 6:
+                    st.error("La contrasena debe tener al menos 6 caracteres.")
+                elif nueva_password != confirmar_password:
+                    st.error("Las contrasenas no coinciden.")
+                elif obtener_usuario(db, nuevo_usuario) is not None:
+                    st.error("Ese usuario ya existe. Elige otro.")
+                else:
+                    crear_usuario(db, nuevo_usuario, nueva_password, nombre_completo)
+                    st.success("Cuenta creada. Ya puedes iniciar sesion en la pestana de al lado.")
+
 
 def mostrar_logout():
     with st.sidebar:
