@@ -128,12 +128,12 @@ def mostrar_login(db):
     with tab_login:
         with st.form("login_form"):
             usuario = st.text_input("Usuario", placeholder="Ingresa tu usuario")
-            password = st.text_input("Contrasena", type="password", placeholder="Ingresa tu contrasena")
+            password = st.text_input("Contraseña", type="password", placeholder="Ingresa tu contraseña")
             submitted = st.form_submit_button("Iniciar sesion")
 
             if submitted:
                 if not usuario or not password:
-                    st.error("Completa usuario y contrasena.")
+                    st.error("Completa usuario y contraseña.")
                 else:
                     datos = obtener_usuario(db, usuario)
                     if datos and verificar_password(password, datos["password_hash"]):
@@ -141,23 +141,23 @@ def mostrar_login(db):
                         st.session_state.usuario = datos.get("usuario", usuario)
                         st.rerun()
                     else:
-                        st.error("Usuario o contrasena incorrectos.")
+                        st.error("Usuario o contraseña incorrectos.")
 
     with tab_registro:
         with st.form("registro_form"):
             nuevo_usuario = st.text_input("Elige un usuario", placeholder="Minimo 3 caracteres")
             nombre_completo = st.text_input("Nombre completo (opcional)")
-            nueva_password = st.text_input("Contrasena", type="password", placeholder="Minimo 6 caracteres")
-            confirmar_password = st.text_input("Confirma tu contrasena", type="password")
+            nueva_password = st.text_input("Contraseña", type="password", placeholder="Minimo 6 caracteres")
+            confirmar_password = st.text_input("Confirma tu contraseña", type="password")
             submitted_reg = st.form_submit_button("Crear cuenta")
 
             if submitted_reg:
                 if len(nuevo_usuario.strip()) < 3:
                     st.error("El usuario debe tener al menos 3 caracteres.")
                 elif len(nueva_password) < 6:
-                    st.error("La contrasena debe tener al menos 6 caracteres.")
+                    st.error("La contraseña debe tener al menos 6 caracteres.")
                 elif nueva_password != confirmar_password:
-                    st.error("Las contrasenas no coinciden.")
+                    st.error("Las contraseñas no coinciden.")
                 elif obtener_usuario(db, nuevo_usuario) is not None:
                     st.error("Ese usuario ya existe. Elige otro.")
                 else:
