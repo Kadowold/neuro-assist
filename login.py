@@ -162,7 +162,7 @@ def mostrar_login(db):
                     st.error("Ese usuario ya existe. Elige otro.")
                 else:
                     crear_usuario(db, nuevo_usuario, nueva_password, nombre_completo)
-                    st.success("Cuenta creada. Ya puedes iniciar sesion en la pestana de al lado.")
+                    st.success("Cuenta creada. Ya puedes iniciar sesion en la pestaña de al lado.")
 
 
 def mostrar_logout():
