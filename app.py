@@ -46,7 +46,7 @@ if "autenticado" not in st.session_state:
     st.session_state.autenticado = False
 
 if not st.session_state.autenticado:
-    mostrar_login()
+    mostrar_login(db)
     st.stop()
 
 mostrar_logout()
