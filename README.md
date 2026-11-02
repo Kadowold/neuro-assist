@@ -4,7 +4,7 @@ App web para registrar y reportar síntomas de epilepsia, migraña y Parkinson. 
 
 > Es un proyecto para aprender. No sustituye la opinión de un médico.
 
-![Pantalla principal de neuro-assist](Pan principal.png)
+![Pantalla principal de neuro-assist](Pan%20principal.png)
 
 ## Cómo correrla
 
